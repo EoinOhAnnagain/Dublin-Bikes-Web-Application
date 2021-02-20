@@ -1,4 +1,18 @@
 # Master
 Master Branch for Project
 
-This is for the master copies of the SE project.
+
+
+The following are the specifications for the Virtual Environment.
+
+Environment Name = SEP
+
+List of pip installs:
+  19.02.21:
+    python 3.8
+    sqlalchemy
+    jupyter
+    mysql-connector
+    requests
+    pandas
+  
