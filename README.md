@@ -8,7 +8,7 @@ The following are the specifications for the Virtual Environment.
 Environment Name = SEP
 
 List of pip installs:
-  python 3.9.1
+  python 3.8
   sqlalchemy
   jupyter
   mysql-connector
