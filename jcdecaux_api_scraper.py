@@ -1,3 +1,13 @@
+from sqlalchemy import Table, Column, Integer, Float, String, MetaData, DateTime, create_engine
+from sqlalchemy.orm import sessionmaker
+import requests
+import json
+import datetime
+from IPython.display import JSON
+import time
+
+engine = create_engine("mysql+mysqlconnector://admin:dublinbikes@dublinbikes.ciwb2rbkjl8e.us-east-1.rds.amazonaws.com:3306/dublinbikes", echo=True)
+
 #JCDecaux API information
 APIKEY = "541e273750ef405656887b8db71e95bcd8652a47"
 NAME = "Dublin"
