@@ -12,7 +12,7 @@ import time
 
 engine = create_engine("mysql+mysqlconnector://admin:admin1234@dbikes.ccecuvqpo8jx.us-east-1.rds.amazonaws.com:3306/dbikes", echo=True)
 
-#Creating tables
+#Creating table
 
 meta = MetaData()
 
@@ -45,14 +45,12 @@ APIKEY = "v7sO8DZEJ6XOtWZmAhoG9Ikv2XQTmnro"
 LOCATION = "207931"
 RESOURCEURL = "http://dataservice.accuweather.com/forecasts/v1/hourly/1hour/"
 
-"""
-Having some issues formatting this correctly, following format is correct:
+#using line for testing currently
+r = requests.get(f"{RESOURCEURL}{LOCATION}?apikey={APIKEY}")
 
-curl -X GET "http://dataservice.accuweather.com/forecasts/v1/hourly/1hour/207931?apikey=v7sO8DZEJ6XOtWZmAhoG9Ikv2XQTmnro"
+#JSON is pulling correctly however mapping to database leads to keyerrors
+print(r.json())
 
-"""
-
-r = requests.get(RESOURCEURL, params={"apiKey": APIKEY, "location": LOCATION})
 
 
 #Inserting data into the weather table
@@ -64,19 +62,18 @@ def get_weather(obj):
             'IconPhrase': obj['IconPhrase'],
             'HasPrecipitation': obj['HasPrecipitation'],
             'IsDaylight': obj['IsDaylight'],
-            'Temperature': obj['Temperature']['value'],
+            'Temperature': obj['Temperature']['Value'],
             'PrecipitationProbability': obj['PrecipitationProbability'],
             'MobileLink': obj['MobileLink'],
             'Link': obj['Link']
            }
 
 values = list(map(get_weather, r.json()))
-#print(values)
 ins = weather.insert().values(values)
 engine.execute(ins)
 
 
-# Inserting data into the availability table every 5 minutes
+# Inserting data into the availability table every 60 minutes
 
 def main():
     while True:
