@@ -3,14 +3,14 @@
 
 from sqlalchemy import Table, Column, Integer, Float, String, MetaData, DateTime, create_engine
 
-#A = admin name
-#B = password
-#C = database url
-#D = port
-#E = Database name
+#USER = admin name
+#PASSWORD = password
+#URL = database url
+#PORT = port
+#DB = Database name
 
 
-engine = create_engine("mysql+mysqlconnector://A:B@C:D/E", echo=True)
+engine = create_engine("mysql+mysqlconnector://{}:{}@{}:{}/{}".format(USER, PASSWORD, URL, PORT, DB), echo=True)
 
 
 APIKEY = ""
