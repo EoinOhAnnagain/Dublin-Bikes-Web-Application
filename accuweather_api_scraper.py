@@ -46,16 +46,23 @@ LOCATION = "207931"
 RESOURCEURL = "http://dataservice.accuweather.com/forecasts/v1/hourly/1hour/"
 
 #using line for testing currently
-r = requests.get(f"{RESOURCEURL}{LOCATION}?apikey={APIKEY}")
+#r = requests.get(f"{RESOURCEURL}{LOCATION}?apikey={APIKEY}")
 
 #JSON is pulling correctly however mapping to database leads to keyerrors
-print(r.json())
+#print(r.json())
 
 
 
 #Inserting data into the weather table
 
 def get_weather(obj):
+    """
+    Takes the API JSON object retrieved from the API weather request and returns a python dictionary to facilitate
+    further commands and manipulations.
+
+    :param obj: API JSON object
+    :return: dictionary mapping each JSON object to relevant key header
+    """
     return {'DateTime': obj['DateTime'],
             'EpochDateTime': obj['EpochDateTime'],
            'WeatherIcon': obj['WeatherIcon'],
@@ -68,24 +75,35 @@ def get_weather(obj):
             'Link': obj['Link']
            }
 
-values = list(map(get_weather, r.json()))
-ins = weather.insert().values(values)
-engine.execute(ins)
+# def store (request_result):
+#     values = list(map(get_weather, request_result.json()))
+#     ins = weather.insert().values(values)
+#     engine.execute(ins)
+#     return
 
 
-# Inserting data into the availability table every 60 minutes
 
 def main():
+
+    # infinite loop to enable continuous data collection
     while True:
         try:
-            r = requests.get(RESOURCEURL, params={"apiKey": APIKEY, "location": LOCATION})
+            #sending get request to specified URL
+            r = requests.get(f"{RESOURCEURL}{LOCATION}?apikey={APIKEY}")
 
+            #storing the values from returned json to a list
             values = list(map(get_weather, r.json()))
+
+            #creating insert command for sqlalchemy engine
             ins = weather.insert().values(values)
+
+            #executing insert command
             engine.execute(ins)
 
+            #repeat every hour
             time.sleep(60 * 60)
 
+        #broad error? perhaps needs some work
         except:
             print('error')
     return
