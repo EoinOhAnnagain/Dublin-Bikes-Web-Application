@@ -1,4 +1,11 @@
-#Importing packages
+"""
+1. Creates a table in RDS DB using mysqlalchemy
+2. Send a request to accuweather API to retrieve hourly forecast information
+3. Stores parsed information in DB
+
+Information retrieval occurs periodically every hour.
+"""
+
 
 from sqlalchemy import Table, Column, Integer, Float, String,Boolean, MetaData, DateTime, create_engine
 from sqlalchemy.orm import sessionmaker
@@ -7,6 +14,27 @@ import json
 import datetime
 from IPython.display import JSON
 import time
+
+
+def get_weather(obj):
+    """
+    Takes the API JSON object retrieved from the API weather request and returns a python dictionary to facilitate
+    further commands and manipulations.
+
+    :param obj: API JSON object
+    :return: dictionary mapping each JSON object to relevant key header
+    """
+    return {'DateTime': obj['DateTime'],
+            'EpochDateTime': obj['EpochDateTime'],
+           'WeatherIcon': obj['WeatherIcon'],
+            'IconPhrase': obj['IconPhrase'],
+            'HasPrecipitation': obj['HasPrecipitation'],
+            'IsDaylight': obj['IsDaylight'],
+            'Temperature': obj['Temperature']['Value'],
+            'PrecipitationProbability': obj['PrecipitationProbability'],
+            'MobileLink': obj['MobileLink'],
+            'Link': obj['Link']
+           }
 
 #Connecting to databse
 
@@ -45,35 +73,7 @@ APIKEY = "v7sO8DZEJ6XOtWZmAhoG9Ikv2XQTmnro"
 LOCATION = "207931"
 RESOURCEURL = "http://dataservice.accuweather.com/forecasts/v1/hourly/1hour/"
 
-#using line for testing currently
-#r = requests.get(f"{RESOURCEURL}{LOCATION}?apikey={APIKEY}")
-
-#JSON is pulling correctly however mapping to database leads to keyerrors
-#print(r.json())
-
-
-
 #Inserting data into the weather table
-
-def get_weather(obj):
-    """
-    Takes the API JSON object retrieved from the API weather request and returns a python dictionary to facilitate
-    further commands and manipulations.
-
-    :param obj: API JSON object
-    :return: dictionary mapping each JSON object to relevant key header
-    """
-    return {'DateTime': obj['DateTime'],
-            'EpochDateTime': obj['EpochDateTime'],
-           'WeatherIcon': obj['WeatherIcon'],
-            'IconPhrase': obj['IconPhrase'],
-            'HasPrecipitation': obj['HasPrecipitation'],
-            'IsDaylight': obj['IsDaylight'],
-            'Temperature': obj['Temperature']['Value'],
-            'PrecipitationProbability': obj['PrecipitationProbability'],
-            'MobileLink': obj['MobileLink'],
-            'Link': obj['Link']
-           }
 
 # def store (request_result):
 #     values = list(map(get_weather, request_result.json()))
@@ -90,6 +90,7 @@ def main():
         try:
             #sending get request to specified URL
             r = requests.get(f"{RESOURCEURL}{LOCATION}?apikey={APIKEY}")
+            print(r.json())
 
             #storing the values from returned json to a list
             values = list(map(get_weather, r.json()))
@@ -103,7 +104,7 @@ def main():
             #repeat every hour
             time.sleep(60 * 60)
 
-        #broad error? perhaps needs some work
+
         except:
             print('error')
     return
