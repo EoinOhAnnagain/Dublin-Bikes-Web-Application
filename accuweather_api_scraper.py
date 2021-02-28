@@ -14,9 +14,11 @@ import json
 import datetime
 from IPython.display import JSON
 import time
+from APID import *
 
 
 def get_weather(obj):
+    print(3.1)
     """
     Takes the API JSON object retrieved from the API weather request and returns a python dictionary to facilitate
     further commands and manipulations.
@@ -33,7 +35,8 @@ def get_weather(obj):
             'Temperature': obj['Temperature']['Value'],
             'PrecipitationProbability': obj['PrecipitationProbability'],
             'MobileLink': obj['MobileLink'],
-            'Link': obj['Link']
+            'Link': obj['Link'],
+            'post_time': datetime.datetime.now()
            }
 
 
@@ -47,14 +50,17 @@ def store (request_result):
     :param request_result: JSON request result pulled from accuweather API
     :return: None, as function simple executes the insert instruction to the RDS
     """
+    print(3)
     values = list(map(get_weather, request_result.json()))
+    print(4)
     ins = weather.insert().values(values)
+    print(5)
     engine.execute(ins)
+    print(6)
     return
 
 #Connecting to databse
 
-engine = create_engine("mysql+mysqlconnector://admin:admin1234@dbikes.ccecuvqpo8jx.us-east-1.rds.amazonaws.com:3306/dbikes", echo=True)
 
 #Creating table
 
@@ -72,22 +78,13 @@ weather = Table(
     Column('PrecipitationProbability', Float),
     Column('MobileLink', String(128)),
     Column('Link', String(128)),
+    Column('post_time', DateTime)
 )
 
-try:
-    weather.drop(engine)
-except:
-    pass
+weather.create(engine, checkfirst=True)
 
 
-meta.create_all(engine)
 
-
-#Connecting to Accuweather API --> NEEDS TO BE SETUP FOR ENVIROMENT VARIABLES
-
-APIKEY = "v7sO8DZEJ6XOtWZmAhoG9Ikv2XQTmnro"
-LOCATION = "207931"
-RESOURCEURL = "http://dataservice.accuweather.com/forecasts/v1/hourly/1hour/"
 
 #Inserting data into the weather table
 
@@ -100,9 +97,12 @@ def main():
     # infinite loop to enable continuous data collection
     while True:
         try:
+            print(1)
             # #sending get request to specified URL
-            r = requests.get(f"{RESOURCEURL}{LOCATION}?apikey={APIKEY}")
+            r = requests.get(f"{RESOURCEURL}{LOCATION}?apikey={APIKEYw}")
+            print(2)
             store(r)
+            print(7)
 
             #keeping non functionalized code in case of error as I am sure it works
             # print(r.json())
