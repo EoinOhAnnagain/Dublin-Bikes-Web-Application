@@ -16,3 +16,6 @@ List of pip installs:
     requests
     pandas
   
+  02.03.2021:
+    flask
+  
