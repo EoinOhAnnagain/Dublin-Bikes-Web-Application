@@ -2,7 +2,6 @@
 1. Creates a table in RDS DB using mysqlalchemy
 2. Send a request to accuweather API to retrieve hourly forecast information
 3. Stores parsed information in DB
-
 Information retrieval occurs periodically every hour.
 """
 
@@ -14,26 +13,31 @@ import json
 import datetime
 from IPython.display import JSON
 import time
+from APID import *
 
 
 def get_weather(obj):
     """
     Takes the API JSON object retrieved from the API weather request and returns a python dictionary to facilitate
     further commands and manipulations.
-
     :param obj: API JSON object
     :return: dictionary mapping each JSON object to relevant key header
     """
     return {'DateTime': obj['DateTime'],
             'EpochDateTime': obj['EpochDateTime'],
-           'WeatherIcon': obj['WeatherIcon'],
+            'WeatherIcon': obj['WeatherIcon'],
             'IconPhrase': obj['IconPhrase'],
             'HasPrecipitation': obj['HasPrecipitation'],
             'IsDaylight': obj['IsDaylight'],
             'Temperature': obj['Temperature']['Value'],
             'PrecipitationProbability': obj['PrecipitationProbability'],
-            'MobileLink': obj['MobileLink'],
-            'Link': obj['Link']
+            'RealFeelTemperature': obj['RealFeelTemperature']['Value'],
+            'WindSpeed': obj['Wind']['Speed']['Value'],
+            'RelativeHumidity': obj['RelativeHumidity'],
+            'Rain': obj['Rain']['Value'],
+            'CloudCover': obj['CloudCover'],
+            'Link': obj['Link'],
+            'post_time': datetime.datetime.now()
            }
 
 
@@ -43,7 +47,6 @@ def store (request_result):
     1. Maps the JSON object to returned from Accuweather API to a list
     2. Creates an insertion instruction to be passed to the engine execute method
     3. Runs execution method of the engine on the insertion instruction
-
     :param request_result: JSON request result pulled from accuweather API
     :return: None, as function simple executes the insert instruction to the RDS
     """
@@ -52,9 +55,6 @@ def store (request_result):
     engine.execute(ins)
     return
 
-#Connecting to databse
-
-engine = create_engine("mysql+mysqlconnector://admin:admin1234@dbikes.ccecuvqpo8jx.us-east-1.rds.amazonaws.com:3306/dbikes", echo=True)
 
 #Creating table
 
@@ -62,38 +62,29 @@ meta = MetaData()
 
 weather = Table(
     'weather', meta,
-    Column('DateTime', String(128), primary_key = True),
-    Column('EpochDateTime', String(128)),
-    Column('WeatherIcon', String(128)),
+    Column('DateTime', String(128)),
+    Column('EpochDateTime', Integer),
+    Column('WeatherIcon', Integer),
     Column('IconPhrase', String(128)),
     Column('HasPrecipitation', Boolean),
     Column('IsDaylight', Boolean),
     Column('Temperature', Float),
     Column('PrecipitationProbability', Float),
-    Column('MobileLink', String(128)),
+    Column('RealFeelTemperature', Float),
+    Column('WindSpeed', Float),
+    Column('RelativeHumidity', Integer),
+    Column('Rain', Float),
+    Column('CloudCover', Integer),
     Column('Link', String(128)),
+    Column('post_time', DateTime)
 )
 
-try:
-    weather.drop(engine)
-except:
-    pass
+weather.create(engine, checkfirst=True)
 
 
-meta.create_all(engine)
 
-
-#Connecting to Accuweather API --> NEEDS TO BE SETUP FOR ENVIROMENT VARIABLES
-
-APIKEY = "v7sO8DZEJ6XOtWZmAhoG9Ikv2XQTmnro"
-LOCATION = "207931"
-RESOURCEURL = "http://dataservice.accuweather.com/forecasts/v1/hourly/1hour/"
 
 #Inserting data into the weather table
-
-
-
-
 
 def main():
 
@@ -101,7 +92,7 @@ def main():
     while True:
         try:
             # #sending get request to specified URL
-            r = requests.get(f"{RESOURCEURL}{LOCATION}?apikey={APIKEY}")
+            r = requests.get(f"{RESOURCEURL}{ACCULOCATIONKEY}?apikey={ACCUAPIKEY}&details=true&metric=true")
             store(r)
 
             #keeping non functionalized code in case of error as I am sure it works
@@ -128,3 +119,4 @@ def main():
 
 if __name__ == '__main__':
     main()
+
