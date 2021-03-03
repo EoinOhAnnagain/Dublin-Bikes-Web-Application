@@ -7,7 +7,7 @@ app = Flask(__name__)
 
 @app.route("/")
 def hello():
-    return app.send_static_file("index.html")
+    return render_template("index.html")
 
 @app.route("/about")
 def about():
