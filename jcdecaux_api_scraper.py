@@ -16,7 +16,7 @@ from IPython.display import JSON
 import time
 
 # Import API details and database connection from APID.
-# Make sure APID has your details or it will fail.
+# Standalone API file is located on EC2 instance to enable use of environment variables
 from APID import *
 
 # Creating table
