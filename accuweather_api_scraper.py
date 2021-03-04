@@ -13,7 +13,7 @@ import json
 import datetime
 from IPython.display import JSON
 import time
-from APID import *
+from .APID import *
 
 
 def get_weather(obj):
@@ -79,6 +79,7 @@ weather = Table(
     Column('post_time', DateTime)
 )
 
+#creatig engine
 weather.create(engine, checkfirst=True)
 
 
@@ -91,21 +92,9 @@ def main():
     # infinite loop to enable continuous data collection
     while True:
         try:
-            # #sending get request to specified URL
+            #sending get request to specified URL
             r = requests.get(f"{RESOURCEURL}{ACCULOCATIONKEY}?apikey={ACCUAPIKEY}&details=true&metric=true")
             store(r)
-
-            #keeping non functionalized code in case of error as I am sure it works
-            # print(r.json())
-            #
-            # #storing the values from returned json to a list
-            # values = list(map(get_weather, r.json()))
-            #
-            # #creating insert command for sqlalchemy engine
-            # ins = weather.insert().values(values)
-            #
-            # #executing insert command
-            # engine.execute(ins)
 
 
             #repeat every hour
