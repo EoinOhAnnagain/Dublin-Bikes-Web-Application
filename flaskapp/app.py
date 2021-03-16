@@ -18,7 +18,6 @@ def contact():
     d = {'name': 'Matthew'}
     return render_template("contact.html", **d)
 
-
 @app.route("/stations")
 #@functools.memoise()
 def stations():
@@ -28,6 +27,14 @@ def stations():
     print([res for res in results])
     #print(df.head(3).to_json(orient="records"))
     return df.head(3).to_json(orient="records")
+
+@app.route("/stationsList")
+def stationsList():
+    engine = create_engine("mysql+mysqlconnector://admin:dublinbikes@dublinbikes.ciwb2rbkjl8e.us-east-1.rds.amazonaws.com:3306/dublinbikes", echo=True)
+    df = pd.read_sql_query("SELECT * FROM availability ORDER BY post_time DESC LIMIT 109", engine)
+    #results = engine.execute("select * from stations")
+    #print([res for res in results])
+    return df.to_json(orient='records')
 
 
 if __name__ == "__main__":
