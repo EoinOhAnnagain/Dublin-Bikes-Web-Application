@@ -1,0 +1,34 @@
+<html>
+    <head>
+        <title>{% block title %} {% endblock %}</title>
+        <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css')}}">
+    </head>
+    <body>
+        
+            <div class="siteTitle"><h1>DCB</h1></div>
+            <div></div>
+            <div class="OE">
+                <ul>
+                    <li>Home</li>
+                    <li>Map</li>
+                    <li>Stations</li>
+                    <li>About Us</li>
+                </ul>
+            </div>
+            <div></div>
+        
+        <div class="page">
+            {% block page %}
+            {% endblock %}
+        </div>
+
+        <div></div>
+
+        <div class="body">
+        {% block content %}
+        {% endblock %}
+        </div>
+
+
+    </body>
+</html>
