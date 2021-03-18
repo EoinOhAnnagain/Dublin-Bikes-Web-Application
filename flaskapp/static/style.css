@@ -1,5 +1,5 @@
 body {
-    background-color: lightcyan;
+    background-color: lightblue;
     text-align: center;
 }
 
@@ -74,4 +74,30 @@ li {
     margin: auto;
     border: 1px solid black;
     text-align: center;
+}
+
+a {
+    font-size: 20px;
+    height: 10px;
+    padding: 10px;
+    text-decoration: none;
+    color: black;
+    transition: .5s ease; /* https://www.w3schools.com/css/css3_transitions.asp */
+}
+
+a li {
+    background-color: white;
+    color: black;
+    transition: .5s ease;
+}
+
+a:hover {
+    color: white;
+    transition: .5s ease; /* https://www.w3schools.com/css/css3_transitions.asp */
+}
+
+a li:hover {
+    color: white;
+    background-color: black;
+    transition: .5s ease; /* https://www.w3schools.com/css/css3_transitions.asp */
 }

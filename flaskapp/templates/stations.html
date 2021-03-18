@@ -1,0 +1,26 @@
+{%extends 'base.html'%}
+
+{% block title %}
+Stations List
+{% endblock %}
+
+{% block meta %}
+  <meta name="Description" content="Stations.html">
+  <meta name="Author" content="Sonia">
+{% endblock %}
+
+<!--<link href="{{ url_for('static', filename='stationsList.css') }}" rel="stylesheet" type="text/css">-->
+
+{% block page %}
+<h1>Stations List</h1>
+{% endblock %}
+
+{% block content %}
+<input type="text" id="myInput" onkeyup="searchFunction()" placeholder="Search for station name or street">
+<div id="list"></div>
+{% endblock %}
+
+
+<script type="text/javascript" src="{{ url_for('static', filename='stationsList.js') }}"></script>
+</body>
+</html>

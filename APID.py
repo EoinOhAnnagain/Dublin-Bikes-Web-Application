@@ -10,7 +10,3 @@ STATIONS = "https://api.jcdecaux.com/vls/v1/stations"
 ACCUAPIKEY = "KJboehsXfcHWN6ZfcHm5W8TKN3wlpCV8"
 ACCULOCATIONKEY = "207931"
 RESOURCEURL = "http://dataservice.accuweather.com/forecasts/v1/hourly/1hour/"
-
-
-
-
