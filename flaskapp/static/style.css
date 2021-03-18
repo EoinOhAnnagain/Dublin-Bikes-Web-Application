@@ -1,16 +1,77 @@
-/* Always set the map height explicitly to define the size of the div
-       * element that contains the map. */
-#map {
-  height: 10%;
-}
-
-#header {
-height: 90%;
-}
-
-/* Optional: Makes the sample page fill the window. */
 body {
-  height: 100%;
-  margin: 0;
-  padding: 0;
+    background-color: lightcyan;
+    text-align: center;
+}
+
+div {
+    border-radius: 25px;
+    background-color: white;
+    margin: 1%;
+}
+
+.header {
+    width: 100%;
+    max-height: 150px;
+    padding: 0;
+    margin: 0;
+    top: 0;
+    left: 0;
+    text-align: center;
+    background-color: red;
+}
+
+.page {
+    width: 95%;
+    margin: auto;
+    height: auto;
+    border: 1px solid black;
+    padding: 0;
+}
+
+.siteTitle {
+    width: 95%;
+    height: auto;
+    min-height: 10%;
+    padding: 0;
+    margin: auto;
+    vertical-align: middle;
+    border: 1px solid black;
+}
+
+.OE {
+    width: 35%;
+    background-color: transparent;
+    padding: 0;
+    margin: auto;
+    height: auto;
+    min-width: 100px;
+    display: inline-block;
+    vertical-align: top;
+}
+
+ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
+
+li {
+    background-color: white;
+    border: 1px solid black;
+    border-radius: 25px;
+    width: 20%;
+    min-width: 100px;
+    margin: auto;
+    max-width: 15%;
+    display: inline-block;
+    margin-left: 3%;
+    margin-right: 3%;
+}
+
+.body {
+    width: 1500px;
+    max-width: 93%;
+    margin: auto;
+    border: 1px solid black;
+    text-align: center;
 }
