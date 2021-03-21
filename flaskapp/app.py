@@ -31,12 +31,15 @@ def map():
 
 @app.route("/stations")
 def stations():
+    return render_template("stations.html")
+
+@app.route("/stationsquery")
+def stationsquery():
     df = pd.read_sql_query("SELECT * FROM availability ORDER BY post_time DESC LIMIT 109", engine)
     #results = engine.execute("select * from stations")
     #print([res for res in results])
     return df.to_json(orient='records')
 
-   
 #@app.route("/contact")
 #def contact():
 #    d = {'name': 'Eoin'}

@@ -7,9 +7,8 @@ Stations List
 {% block meta %}
   <meta name="Description" content="Stations.html">
   <meta name="Author" content="Sonia">
+  <script type="text/javascript" src="{{ url_for('static', filename='stationsList.js') }}"></script>
 {% endblock %}
-
-<!--<link href="{{ url_for('static', filename='stationsList.css') }}" rel="stylesheet" type="text/css">-->
 
 {% block page %}
 <h1>Stations List</h1>
@@ -21,6 +20,6 @@ Stations List
 {% endblock %}
 
 
-<script type="text/javascript" src="{{ url_for('static', filename='stationsList.js') }}"></script>
+
 </body>
 </html>
