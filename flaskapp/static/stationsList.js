@@ -3,7 +3,7 @@ window.onload = function() {
 };
 
 function initList() {
-    fetch("/stationsList").then(response => {
+    fetch("/stationsquery").then(response => {
       return response.json();
     }).then(data => {
       console.log("data: ", data);
