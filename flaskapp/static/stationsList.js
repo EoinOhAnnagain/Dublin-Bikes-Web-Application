@@ -2,8 +2,6 @@ window.onload = function() {
     initList();
 };
 
-
-
 function initList() {
     fetch("/stationsquery").then(response => {
       return response.json();
