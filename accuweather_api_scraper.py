@@ -6,14 +6,11 @@ Information retrieval occurs periodically every hour.
 """
 
 
-from sqlalchemy import Table, Column, Integer, Float, String,Boolean, MetaData, DateTime, create_engine
-from sqlalchemy.orm import sessionmaker
+from sqlalchemy import Boolean
 import requests
-import json
 import datetime
-from IPython.display import JSON
 import time
-from .APID import *
+from Master.flaskapp.APID import *
 
 
 def get_weather(obj):

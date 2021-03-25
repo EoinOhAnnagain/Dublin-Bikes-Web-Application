@@ -20,14 +20,19 @@ def hi():
 def about():
     return app.send_static_file("about.html")
 
+
 @app.route("/map")
-#@functools.memoise()
 def map():
+    return render_template("map.html")
+
+
+@app.route("/mapquery")
+#@functools.memoise()
+def mapquery():
     df = pd.read_sql_table("stations", engine)
     results = engine.execute("select * from stations")
     print([res for res in results])
-    #print(df.head(3).to_json(orient="records"))
-    return df.head(3).to_json(orient="records")
+    return df.to_json(orient="records")
 
 @app.route("/stations")
 def stations():
