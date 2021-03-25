@@ -83,7 +83,7 @@ a {
     padding: 10px;
     text-decoration: none;
     color: black;
-    transition: .5s ease; /* https://www.w3schools.com/css/css3_transitions.asp */
+    transition: .5s ease;
 }
 
 a li {
@@ -94,13 +94,13 @@ a li {
 
 a:hover {
     color: white;
-    transition: .5s ease; /* https://www.w3schools.com/css/css3_transitions.asp */
+    transition: .5s ease;
 }
 
 a li:hover {
     color: white;
     background-color: black;
-    transition: .5s ease; /* https://www.w3schools.com/css/css3_transitions.asp */
+    transition: .5s ease;
 }
 
 tr, td, table {
