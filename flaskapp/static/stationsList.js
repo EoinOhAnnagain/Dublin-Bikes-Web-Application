@@ -14,7 +14,8 @@ function initList() {
         result += "<tr><td><a>" + station.name + "</a>" +
                 "<p>Available bike stands: " + station.available_bike_stands + "</p>" +
                 "<p>Available bikes: " + station.available_bikes + "</p>" +
-                "<p>Update: " + timeConverter(station.last_update) + "</p></td></tr>";
+                "<p>Update: " + timeConverter(station.last_update) + "</p></td></tr>"
+                +"<tr class='divider'><th>-</th></tr>";
       });
 
     result += "</table>";
