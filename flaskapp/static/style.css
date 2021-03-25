@@ -80,8 +80,13 @@ li {
     margin: auto;
     border: 1px solid black;
     text-align: center;
-    max-height: 90%;
-    overflow-y: scroll;
+}
+
+.scroll {
+    width: auto;
+    height: auto;
+    max-height: 62%;
+    overflow-y: auto;
 }
 
 /* Map page styling */
