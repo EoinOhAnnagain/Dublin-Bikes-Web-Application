@@ -14,7 +14,7 @@ div {
 
 .header {
     width: 100%;
-    max-height: 150px;
+    max-height: 1%;
     padding: 0;
     margin: 0;
     top: 0;
@@ -23,6 +23,9 @@ div {
     background-color: red;
 }
 
+.title {
+    max-width: 95%;
+}
 .page {
     width: 95%;
     margin: auto;
@@ -72,11 +75,13 @@ li {
 }
 
 .body {
-    width: 1500px;
-    max-width: 93%;
+    width: 93%;
+    max-width: 1500px;
     margin: auto;
     border: 1px solid black;
     text-align: center;
+    max-height: 90%;
+    overflow-y: scroll;
 }
 
 /* Map page styling */
@@ -96,7 +101,7 @@ a {
     padding: 10px;
     text-decoration: none;
     color: black;
-    transition: .5s ease; /* https://www.w3schools.com/css/css3_transitions.asp */
+    transition: .5s ease;
 }
 
 a li {
@@ -113,7 +118,7 @@ a:hover {
 a li:hover {
     color: white;
     background-color: black;
-    transition: .5s ease; /* https://www.w3schools.com/css/css3_transitions.asp */
+    transition: .5s ease;
 }
 
 
