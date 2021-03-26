@@ -29,9 +29,9 @@ def map():
 @app.route("/mapquery")
 #@functools.memoise()
 def mapquery():
-    df = pd.read_sql_table("stations", engine)
-    results = engine.execute("select * from stations")
-    print([res for res in results])
+    df = pd.read_sql_query("select * from stations", engine)
+    #results = engine.execute("select * from stations")
+    #print([res for res in results])
     return df.to_json(orient="records")
 
 @app.route("/stations")
