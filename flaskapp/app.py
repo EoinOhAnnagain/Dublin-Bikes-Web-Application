@@ -25,6 +25,10 @@ def about():
 def map():
     return render_template("map.html")
 
+@app.route("/map_integrated")
+def map_integrated():
+    return render_template("map_integrated.html")
+
 
 @app.route("/mapquery")
 #@functools.memoise()
