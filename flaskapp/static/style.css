@@ -92,16 +92,10 @@ li {
 /* Map page styling */
 
 #map {
-    height: 50%;
+    height: 100%;
+
  }
 
-#header {
-    height: 10%
-}
-
-#chart {
-    height: 40%;
-}
 
 
 /* Stations list styling */
