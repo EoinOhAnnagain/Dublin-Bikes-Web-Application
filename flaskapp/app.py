@@ -24,7 +24,7 @@ def home_empty_query():
 
 @app.route("/home_weather_query")
 def home_weather_query():
-    dfw = pd.read_sql_query("SELECT * FROM DublinBikes.weather ORDER BY post_time DESC LIMIT ;")
+    dfw = pd.read_sql_query("SELECT * FROM DublinBikes.weather ORDER BY post_time DESC LIMIT 1", engine)
     return dfw.to_json(orient='records')
 
 @app.route("/test")
