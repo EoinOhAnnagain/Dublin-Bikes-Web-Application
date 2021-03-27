@@ -141,10 +141,9 @@ tr, td {
     background-color: #87baff;
 }
 
-.divider {
-    background-color: transparent;
-    border: none;
-    color: transparent;
+table {
+    border-collapse:separate;
+    border-spacing:0 15px;
 }
 
 #myInput {
