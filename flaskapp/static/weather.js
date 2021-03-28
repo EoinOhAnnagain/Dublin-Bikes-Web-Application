@@ -1,8 +1,8 @@
 window.onload = function() {
-    initList();
+    initWeather();
 };
 
-function initList() {
+function initWeather() {
     fetch("/home_weather_query").then(response => {
       return response.json();
     }).then(data => {
