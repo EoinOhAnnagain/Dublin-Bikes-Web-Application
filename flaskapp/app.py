@@ -12,6 +12,21 @@ app = Flask(__name__)
 def hello():
     return render_template("index.html")
 
+@app.route("/home_empty_query")
+def home_empty_query():
+    dfe = pd.read_sql_query("Select address, available_bikes, post_time FROM (SELECT * FROM DublinBikes.availability ORDER BY post_time DESC LIMIT 109) AS tail WHERE available_bikes = 0;")
+    return dfe.to_json(orient='records')
+
+#@app.route("/home_full_query")
+#def home_empty_query():
+#    df = pd.read_sql_query("Select address, available_bikes, post_time FROM (SELECT * FROM DublinBikes.availability ORDER BY post_time DESC LIMIT 109) AS tail WHERE available_bikes = 0;")
+#    return df.to_json(orient='records')
+
+@app.route("/home_weather_query")
+def home_weather_query():
+    dfw = pd.read_sql_query("SELECT * FROM DublinBikes.weather ORDER BY post_time DESC LIMIT 1", engine)
+    return dfw.to_json(orient='records')
+
 @app.route("/test")
 def hi():
     return render_template("test.html")
@@ -48,6 +63,19 @@ def stationsquery():
     #results = engine.execute("select * from stations")
     #print([res for res in results])
     return df.to_json(orient='records')
+
+@app.route("/occupancy/<int:station_id>")
+def get_occupancy(station_id):
+    sql = f"""
+        SELECT number, last_update, available_bike_stands, available_bikes FROM availability
+        where number = {station_id}
+    """
+    df = pd.read_sql_query(sql, engine)
+    df = df[(df['last_update'].dt.year != 1970)]
+    res_df = df.set_index('last_update').resample('1d').mean()
+    res_df['last_update'] = res_df.index
+    return res_df.to_json(orient='records')
+
 
 #@app.route("/contact")
 #def contact():

@@ -23,6 +23,11 @@ div {
     background-color: red;
 }
 
+.loading{
+    height: 40%;
+    width: auto;
+}
+
 .title {
     max-width: 95%;
 }
@@ -93,7 +98,6 @@ li {
 
 #map {
     height: 100%;
-    width: 100%;
 
  }
 
