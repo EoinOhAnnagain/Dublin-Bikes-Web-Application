@@ -15,6 +15,5 @@ Home
 {% endblock %}
 
 {% block content %}
-<h3>Hello</h3>
-<div id="weather">Loading...</div>
+<div id="weather"><img class="loading" src="{{ url_for('static', filename='loading.gif')}}"></div>
 {% endblock %}
