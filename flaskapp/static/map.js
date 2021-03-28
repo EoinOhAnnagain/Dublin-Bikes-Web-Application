@@ -2,7 +2,7 @@ let map;
 
 function initMap() {
 
-fetch("/mapquery").then(response => {
+fetch("/stationsquery").then(response => {
     return response.json();
     }).then(data => {
       console.log("data: ", data);
@@ -19,7 +19,12 @@ fetch("/mapquery").then(response => {
     });
     marker.addListener("click", () => {
     const infowindow = new google.maps.InfoWindow({
-        content: station.name,
+        content:"<h2>"+ station.name + "<h2><h3>Bikes available: "+ station.available_bikes +"<h3>"+
+        "<h3>Free stands available: "+ station.available_bike_stands +"<h3>"+
+        "<h3>Station status: "+ station.status +"<h3>"+
+        '</b>',
+        // "<h2>" + station.name + "</h2><br>"+ "<h3>Available bikes: "+ station.available_bikes "</h3><br>" + "<h3>Available bikes: "+ station.available_bike_stands "</h3><br>" +"<h3>Station status: "+ station.status + "</h3><br>"
+
     });
     infowindow.open(map,marker);
   });
