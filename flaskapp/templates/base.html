@@ -3,11 +3,12 @@
     <head>
         <meta charset="utf-8">
         <title>{% block title %} {% endblock %}</title>
+        <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css')}}">
         {% block meta %}
         <meta name="Description" content="Base.html">
         <meta name="Author" content="Eoin">
         {% endblock %}
-        <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css')}}">
+    
     </head>
     <body>
         <header>
@@ -19,9 +20,9 @@
                 <nav>
                 <ul>
                     <a href="/home"><li>Home</li></a>
-                    <a href="/map"><li>Map</li></a>
                     <a href="/stations"><li>Stations</li></a>
-                    <li>About Us</li>
+                    <a href="/map"><li>Map</li></a>
+                    
                 </ul>
                 </nav>
             </div>
@@ -36,6 +37,8 @@
 
         <div></div>
         </header>
+        {% block map %}
+        {% endblock %}
         <div class="body">
             <div class="scroll">
         {% block content %}

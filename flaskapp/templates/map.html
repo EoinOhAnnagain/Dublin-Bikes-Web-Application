@@ -1,47 +1,20 @@
-<html>
-    <html lang="en">
-    <head>
-        <meta charset="utf-8">
-        <title>{% block title %} {% endblock %}</title>
-        {% block meta %}
-        <meta name="Description" content="Base.html">
-        <meta name="Author" content="Eoin">
-        {% endblock %}
-        <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='map_style.css')}}">
-        <script src="{{url_for('static', filename='map.js')}}"></script>
+{%extends 'base.html'%}
 
-    </head>
-    <body>
-        <header>
-            <div class="siteTitle">
-                <img src="{{ url_for('static', filename='Header.gif')}}">
-            </div>
-            <div></div>
-            <div class="OE">
-                <nav>
-                <ul>
-                    <a href="/home"><li>Home</li></a>
-                    <a href="/map"><li>Map</li></a>
-                    <a href="/stations"><li>Stations</li></a>
-                    <li>About Us</li>
-                </ul>
-                </nav>
-            </div>
-            <div></div>
-        
-        <div class="page">
-            Station Map
-        </div>
+{% block title %}
+Map Page
+{% endblock %}
 
-        <div></div>
-        </header>
+{% block meta %}
+<meta name="Description" content="Map.html">
+<meta name="Author" content="Matthew">
+<script src="{{url_for('static', filename='map.js')}}"></script>
+{% endblock %}
 
-        <div id="map" ></div>
+{% block page %}
+Stations Map
+{% endblock %}
 
-
-        <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD5kFN1DUAWc6PZD3lFugxml81w6nAOw8M&callback=initMap&libraries=&v=weekly"
-         async></script>
-
-
-    </body>
-</html>
+{% block map %}
+<div id="map"><img class="loading" src="{{ url_for('static', filename='loading.gif')}}"/></div>
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD5kFN1DUAWc6PZD3lFugxml81w6nAOw8M&callback=initMap&libraries=&v=weekly" async></script>
+{% endblock %}
