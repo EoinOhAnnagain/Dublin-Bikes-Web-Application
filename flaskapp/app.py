@@ -35,14 +35,9 @@ def hi():
 def about():
     return app.send_static_file("about.html")
 
-
 @app.route("/map")
-def map():
-    return render_template("map.html")
-
-@app.route("/map_integrated")
 def map_integrated():
-    return render_template("map_integrated.html")
+    return render_template("map.html")
 
 
 @app.route("/mapquery")
