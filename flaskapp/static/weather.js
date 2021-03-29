@@ -13,19 +13,24 @@ function initWeather() {
     result += "<table id='weaterTable'></table>"
 
     data.forEach(weather => {
-      var temp = weather.Temperature
-      var RFTemp = weather.RealFeelTemperature
-      var icon = weather.WeatherIcon
+      var temp = weather.Temperature;
+      var RFTemp = weather.RealFeelTemperature;
+      var icon = weather.WeatherIcon;
       var iconPic = "<img class='loading' src='static/weatherIcons/"+icon+".gif'>";
-      var iconPhrase = weather.IconPhrase
-      var pp = weather.PrecipitationProbability
-      var rain = weather.Rain
-      var humid = weather.RelativeHumidity
-      var wind = weather.WindSpeed
+      var iconPhrase = weather.IconPhrase;
+      var pp = weather.PrecipitationProbability;
+      var rain = weather.Rain;
+      var humid = weather.RelativeHumidity;
+      var wind = weather.WindSpeed;
+      var iconList = [1, 2, 3, 4, 6, 7, 11, 12, 13,14, 18, 34, 35, 36, 38, 40];
 
       result += "<p>Temperature: " + temp + "ºC</p>";
       result += "<p>Real Feel Temperature: " + RFTemp + "ºC</p>";
-      result += iconPic;
+      if (iconList.includes(icon)==true) {
+        result += iconPic;
+      } else {
+        result += "<img class='loading' src='static/weatherIcons/unknown.gif'>";
+      }
       result += iconPhrase;
       result += "<p>Icon: " + icon + "</p>";
       result += "<p>Precipitation Probability: " + pp + "</p>";
