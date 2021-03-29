@@ -96,18 +96,8 @@ li {
 
 #map {
     height: 100%;
+    border-radius: 25px;
  }
-
-#chart1 {
-    height: 30%;
-    width: 50%;
-}
-
-#chart2 {
-    height: 30%;
-    width: 50%;
-}
-
 
 
 /* Stations list styling */
@@ -178,3 +168,13 @@ table {
 }
 
 /*******************************************************************************************/
+
+#chart1 {
+    height: auto;
+    width: auto;
+}
+
+#chart2 {
+    height: auto;
+    width: auto;
+}

@@ -41,3 +41,4 @@ function initWeather() {
       console.log("OOPS!", err);
     })
   }
+  

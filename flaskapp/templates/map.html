@@ -17,7 +17,12 @@ Stations Map
 
 {% block map %}
 <div id="map"><img class="loading" src="{{ url_for('static', filename='loading.gif')}}"/></div>
-<div id="chart1">chart1</div>
-<div id="chart2">chart2</div>
 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD5kFN1DUAWc6PZD3lFugxml81w6nAOw8M&callback=initCharts&libraries=&v=weekly" async></script>
+{% endblock %}
+
+{% block content %}
+
+<div id="chart1"></div>
+<div id="chart2"></div>
+
 {% endblock %}
