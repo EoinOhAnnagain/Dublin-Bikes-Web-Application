@@ -8,6 +8,7 @@ Map Page
 <meta name="Description" content="Map.html">
 <meta name="Author" content="Matthew">
 <script src="{{url_for('static', filename='map.js')}}"></script>
+<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
 {% endblock %}
 
 {% block page %}
@@ -16,5 +17,7 @@ Stations Map
 
 {% block map %}
 <div id="map"><img class="loading" src="{{ url_for('static', filename='loading.gif')}}"/></div>
-<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD5kFN1DUAWc6PZD3lFugxml81w6nAOw8M&callback=initMap&libraries=&v=weekly" async></script>
+<div id="chart1">chart1</div>
+<div id="chart2">chart2</div>
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD5kFN1DUAWc6PZD3lFugxml81w6nAOw8M&callback=initCharts&libraries=&v=weekly" async></script>
 {% endblock %}

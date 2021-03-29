@@ -96,8 +96,17 @@ li {
 
 #map {
     height: 100%;
-
  }
+
+#chart1 {
+    height: 30%;
+    width: 50%;
+}
+
+#chart2 {
+    height: 30%;
+    width: 50%;
+}
 
 
 

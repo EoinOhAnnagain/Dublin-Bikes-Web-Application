@@ -3,7 +3,7 @@ from jinja2 import Template
 from sqlalchemy import create_engine
 import pandas as pd
 from APID import *
-
+from functools import lru_cache
 
 app = Flask(__name__)
 
@@ -24,7 +24,7 @@ def home_empty_query():
 
 @app.route("/home_weather_query")
 def home_weather_query():
-    dfw = pd.read_sql_query("SELECT * FROM DublinBikes.weather ORDER BY post_time DESC LIMIT 1", engine)
+    dfw = pd.read_sql_query("SELECT * FROM weather ORDER BY post_time DESC LIMIT 1", engine)
     return dfw.to_json(orient='records')
 
 @app.route("/test")
@@ -42,7 +42,9 @@ def map_integrated():
 
 @app.route("/mapquery")
 #@functools.memoise()
+@lru_cache
 def mapquery():
+    print('calling stations')
     df = pd.read_sql_query("select * from stations", engine)
     #results = engine.execute("select * from stations")
     #print([res for res in results])
@@ -60,14 +62,16 @@ def stationsquery():
     return df.to_json(orient='records')
 
 @app.route("/occupancy/<int:station_id>")
+@lru_cache # temporarily cache result
 def get_occupancy(station_id):
     sql = f"""
-        SELECT number, last_update, available_bike_stands, available_bikes FROM availability
+        SELECT number, last_update, available_bike_stands, available_bikes, name FROM availability
         where number = {station_id}
     """
     df = pd.read_sql_query(sql, engine)
     df = df[(df['last_update'].dt.year != 1970)]
     res_df = df.set_index('last_update').resample('1d').mean()
+    res_df['name'] = df['name'][0]
     res_df['last_update'] = res_df.index
     return res_df.to_json(orient='records')
 

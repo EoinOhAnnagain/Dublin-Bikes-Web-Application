@@ -1,5 +1,11 @@
 let map;
 
+function initCharts() {
+    google.charts.load('current', {'packages': ['corechart']});
+    google.charts.setOnLoadCallback(initMap);
+}
+
+
 function initMap() {
 
 fetch("/stationsquery").then(response => {
@@ -27,6 +33,8 @@ fetch("/stationsquery").then(response => {
 
     });
     infowindow.open(map,marker);
+    console.log('calling drawOccupancyWeekly' + station.number);
+    drawOccupancyWeekly(station.number);
   });
   });
 
@@ -78,3 +86,48 @@ fetch("/stationsquery").then(response => {
   infoWindow.open(map);
 }
 
+function drawOccupancyWeekly(station_number) {
+    // this is called when the user clicks on the marker
+    // use google charts to draw a chart at the bottom of the page
+
+    fetch("/occupancy/" + station_number).then(response => {
+        return response.json();
+    }).then(data => {
+        console.log(data);
+
+        var options = {
+            title: data[0].name + " Bike Availability per day",
+
+        }
+
+        var chart = new google.visualization.ColumnChart(document.getElementById('chart1'));
+        var chart_data = new google.visualization.DataTable();
+        chart_data.addColumn('datetime', "Date");
+        chart_data.addColumn('number', 'Bike Availability');
+        data.forEach(v => {
+            chart_data.addRow( [new Date(v.last_update), v.available_bikes]);
+        })
+        chart.draw(chart_data, options);
+    });
+
+
+    fetch("/occupancy/" + station_number).then(response => {
+        return response.json();
+    }).then(data => {
+        console.log(data);
+
+        var options = {
+            title: data[0].name + " Bike Stand Availability per day",
+
+        }
+
+        var chart = new google.visualization.ColumnChart(document.getElementById('chart2'));
+        var chart_data = new google.visualization.DataTable();
+        chart_data.addColumn('datetime', "Date");
+        chart_data.addColumn('number', 'Bike Stand Availability');
+        data.forEach(v => {
+            chart_data.addRow( [new Date(v.last_update), v.available_bike_stands]);
+        })
+        chart.draw(chart_data, options);
+    });
+}
