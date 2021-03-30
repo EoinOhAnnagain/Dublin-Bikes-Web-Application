@@ -152,7 +152,74 @@ table {
 
 #myInput {
     width: 250px;
+    margin-top: 15px;
 }
+
+td a {
+    color: black;
+    font-weight: bold;
+    font-size: 20px;
+    display: inline!important;
+    position: relative;
+    bottom: 16px;
+    left:0px;
+    padding-right: 90px;
+}
+
+td a:hover {
+    color: black;
+}
+
+#parking {
+    max-width: 4%;
+    height: auto;
+    position: relative;
+    top: 17px;
+}
+
+#bike {
+    max-width: 4%;
+    height: auto;
+    padding: 10px;
+    position: relative;
+    top: 17px;
+}
+
+#update {
+    max-width: 2.5%;
+    height: auto;
+    padding: 10px;
+    position: relative;
+    top: 19px;
+}
+
+.bikeStands {
+    font-weight: bold;
+    font-size: 20px;
+    display: inline!important;
+     padding: 50px;
+    position: relative;
+    bottom: 18px;
+}
+
+.bikes {
+    font-weight: bold;
+    font-size: 20px;
+    display: inline!important;
+     padding: 50px;
+    position: relative;
+    bottom: 18px;
+}
+
+.updates {
+    font-weight: bold;
+    font-size: 20px;
+    display: inline!important;
+    padding: 50px;
+    position: relative;
+    bottom: 18px;
+}
+
 
 /********************************** Map Div Box Setting ************************************/
 /*************************** VOLATILE: PLEASE DO NOT MESS WITH *****************************/

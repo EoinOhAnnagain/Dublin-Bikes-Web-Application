@@ -12,9 +12,9 @@ function initList() {
       data.forEach(station => {
 
         result += "<tr><td><a>" + station.name + "</a>" +
-                "<p>Available bike stands: " + station.available_bike_stands + "</p>" +
-                "<p>Available bikes: " + station.available_bikes + "</p>" +
-                "<p>Update: " + timeConverter(station.last_update) + "</p></td></tr>";
+                "<p class='bikeStands'><img id='parking' src='static/stationsListIcons/parking.png' alt='parking icon'> " + station.available_bike_stands + "</p>" +
+                "<p class='bikes'><img id='bike' src ='static/stationsListIcons/bike.png' alt='bike icon'> " + station.available_bikes + "</p>" +
+                "<p class='updates'><img id='update' src ='static/stationsListIcons/update.png' alt='update icon'> " + timeConverter(station.last_update) + "</p></td></tr>";
       });
 
     result += "</table>";
