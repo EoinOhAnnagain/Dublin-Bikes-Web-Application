@@ -160,11 +160,13 @@ table {
 }
 
 #map > div{
-    all: unset;
+    margin: unset;
 }
 
 #map > * div{
-    all: unset;
+    background-color: initial;
+    margin: 0;
+    padding: 0;
 }
 
 /*******************************************************************************************/

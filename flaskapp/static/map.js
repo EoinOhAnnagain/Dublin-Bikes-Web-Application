@@ -25,11 +25,13 @@ fetch("/stationsquery").then(response => {
     });
     marker.addListener("click", () => {
     const infowindow = new google.maps.InfoWindow({
-        content:"<h2>"+ station.name + "<h2><h3>Bikes available: "+ station.available_bikes +"<h3>"+
+        content:"<div class='info' style='background-color: rgba(135, 186, 255, 0.9); border-radius: 0px; margin: 1%; padding: 1%;'><h2>"+ station.name + "<h2><h3>Bikes available: "+ station.available_bikes +"<h3>"+
+        // The div with class info refuses to style using the css so its style had to be included in the tag.
         "<h3>Free stands available: "+ station.available_bike_stands +"<h3>"+
-        "<h3>Station status: "+ station.status +"<h3>"+
+        "<h3>Station status: "+ station.status +"<h3></div>"+
         '</b>',
         // "<h2>" + station.name + "</h2><br>"+ "<h3>Available bikes: "+ station.available_bikes "</h3><br>" + "<h3>Available bikes: "+ station.available_bike_stands "</h3><br>" +"<h3>Station status: "+ station.status + "</h3><br>"
+        
 
     });
     infowindow.open(map,marker);
