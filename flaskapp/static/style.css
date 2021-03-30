@@ -96,6 +96,8 @@ li {
 
 #map {
     height: 100%;
+    margin: auto;
+    margin-bottom: 1%;
     border-radius: 25px;
  }
 
