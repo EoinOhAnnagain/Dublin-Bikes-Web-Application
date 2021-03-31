@@ -105,14 +105,6 @@ li {
     border-radius: 25px;
  }
 
- .map_info_div{
-     background-color: rgba(135,186,255,0.9);
-     border-radius: 0px;
-     margin: 1%;
-     padding: 1%;
- }
-
-
 /* Stations list styling */
 
 a {
@@ -247,6 +239,20 @@ td a:hover {
     background-color: initial;
     margin: 0;
     padding: 0;
+}
+
+#map > div:last-child{
+    background-color: rgba(135,186,255,0.9);
+    border-radius: 0px;
+    margin: 1%;
+    padding: 1%;
+}
+
+#map_info_div{
+    background-color: rgba(135,186,255,0.9);
+    border-radius: 0px;
+    margin: 1%;
+    padding: 1%;
 }
 
 /*******************************************************************************************/
