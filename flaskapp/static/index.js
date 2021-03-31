@@ -1,6 +1,51 @@
 window.onload = function() {
     initWeather();
+    initStands();
 };
+
+function initStands() {
+  fetch("/bike_stand_query").then(response => {
+    return response.json();
+  }).then(data => {
+    console.log("data: ", data);
+
+  result = "<div style='text-align: left;'><h2>  Available</h2>";
+
+  var checker = false;
+
+
+
+  data.forEach(availability => {
+
+
+    if (availability.available_bikes==0) {
+      if (checker==false) {
+        result += "<div class='stand_status'><h3>Empty Stations</h3>"
+        checker = true;
+      }
+      result += availability.name
+      
+    }
+  });
+
+  result += "</div>";
+    
+  
+  document.getElementById("stands").innerHTML = result;
+
+  }).catch(err => {
+    console.log("OOPS!", err);
+  })
+}
+
+
+
+
+
+
+
+
+
 
 function initWeather() {
     fetch("/home_weather_query").then(response => {

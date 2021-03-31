@@ -14,7 +14,7 @@ def hello():
 
 @app.route("/bike_stand_query")
 def bike_stand_query():
-    dfe = pd.read_sql_query("Select address, available_bikes, available_bike_stands, post_time FROM (SELECT * FROM DublinBikes.availability ORDER BY post_time DESC LIMIT 109) AS tail WHERE available_bikes = 0;")
+    dfe = pd.read_sql_query("SELECT name, available_bikes, available_bike_stands, post_time FROM availability ORDER BY post_time DESC LIMIT 109", engine)
     return dfe.to_json(orient='records')
 
 @app.route("/home_weather_query")
@@ -72,7 +72,7 @@ def get_occupancy(station_id):
 
 
 
-    
+
 
 if __name__ == "__main__":
     app.run(debug=True, port=5000)

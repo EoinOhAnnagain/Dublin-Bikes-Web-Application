@@ -7,7 +7,7 @@ Home Page
 {% block meta %}
 <meta name="Description" content="Index.html">
 <meta name="Author" content="Eoin">
-<script type="text/javascript" src="{{ url_for('static', filename='weather.js') }}"></script>
+<script type="text/javascript" src="{{ url_for('static', filename='index.js') }}"></script>
 {% endblock %}
 
 {% block page %}
@@ -15,5 +15,6 @@ Home
 {% endblock %}
 
 {% block content %}
+<div id="stands"></div>
 <div id="weather"><img class="loading" src="{{ url_for('static', filename='loading.gif')}}"/></div>
 {% endblock %}
