@@ -106,7 +106,8 @@ function drawOccupancyWeekly(station_number) {
         chart_data.addColumn('datetime', "Date");
         chart_data.addColumn('number', 'Bike Availability');
         data.forEach(v => {
-            chart_data.addRow( [new Date(v.last_update), v.available_bikes]);
+          var rounded = Math.round(v.available_bikes);
+            chart_data.addRow( [new Date(v.last_update), rounded]);
         })
         chart.draw(chart_data, options);
     });
@@ -127,7 +128,8 @@ function drawOccupancyWeekly(station_number) {
         chart_data.addColumn('datetime', "Date");
         chart_data.addColumn('number', 'Bike Stand Availability');
         data.forEach(v => {
-            chart_data.addRow( [new Date(v.last_update), v.available_bike_stands]);
+          var rounded = Math.round(v.available_bike_stands);
+            chart_data.addRow( [new Date(v.last_update), rounded]);
         })
         chart.draw(chart_data, options);
     });
