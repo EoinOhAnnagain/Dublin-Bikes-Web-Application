@@ -18,21 +18,23 @@ fetch("/stationsquery").then(response => {
     zoom: 14,
   });
 
+  const infowindow = new google.maps.InfoWindow({
+    content: ''
+
+  });
+
   data.forEach(station => {
     const marker = new google.maps.Marker({
         position: { lat: station.pos_lat, lng: station.pos_lng },
         map: map,
     });
     marker.addListener("click", () => {
-    const infowindow = new google.maps.InfoWindow({
-        content:"<div class='map_info_div'><h2>"+ station.name + "<h2><h3>Bikes available: "+ station.available_bikes +"<h3>"+
+
+    infowindow.setContent("<div class='map_info_div'><h2>"+ station.name + "<h2><h3>Bikes available: "+ station.available_bikes +"<h3>"+
         "<h3>Free stands available: "+ station.available_bike_stands +"<h3>"+
         "<h3>Station status: "+ station.status +"<h3></div>"+
-        '</b>',
-        // "<h2>" + station.name + "</h2><br>"+ "<h3>Available bikes: "+ station.available_bikes "</h3><br>" + "<h3>Available bikes: "+ station.available_bike_stands "</h3><br>" +"<h3>Station status: "+ station.status + "</h3><br>"
-        
+        '</b>');
 
-    });
     infowindow.open(map,marker);
     console.log('calling drawOccupancyWeekly' + station.number);
     drawOccupancyWeekly(station.number);
