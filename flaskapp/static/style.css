@@ -1,5 +1,9 @@
 /* Overall template styling rules*/
 
+* {
+    font-family: Arial, Helvetica, sans-serif;
+}
+
 body {
     background-color: #000081;
     text-align: center;

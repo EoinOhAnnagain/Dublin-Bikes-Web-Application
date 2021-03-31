@@ -8,7 +8,7 @@ function initWeather() {
     }).then(data => {
       console.log("data: ", data);
 
-    result = "<div style='text-align: left;'><h2>  Current Weather</h2><iframe src='https://free.timeanddate.com/clock/i7qk59en/n78/tlie/tt0/tw1/tm1' frameborder='0' width='182' height='18'></iframe>";
+    result = "<div style='text-align: left;'><h2>  Current Weather</h2><iframe src='https://free.timeanddate.com/clock/i7qn1g4m/n78/tlie/ftb/tt0/tw1/tm1/th1/tb4' frameborder='0' width='121' height='34'></iframe>";
 
     result += "<table id='weaterTable'></table>"
 
