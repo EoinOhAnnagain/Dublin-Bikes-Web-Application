@@ -9,27 +9,100 @@ function initStands() {
   }).then(data => {
     console.log("data: ", data);
 
-  result = "<div style='text-align: left;'><h2>  Available</h2>";
+  result = "<div style='text-align: left;'><h2>Current Availability</h2>";
 
   var checker = false;
 
-
-
   data.forEach(availability => {
-
 
     if (availability.available_bikes==0) {
       if (checker==false) {
-        result += "<div class='stand_status'><h3>Empty Stations</h3>"
+        result += "<div class='stand_status'><h3>Empty Stations</h3><div style='background-color: red;'>";
         checker = true;
       }
-      result += availability.name
-      
+      result += "<p>"+availability.name+"</p>";      
     }
   });
 
+  if (checker==true) {
+    result += "</div>";
+  } else {
+    result += "<p>No Empty Stands</p>";
+  }
   result += "</div>";
-    
+
+
+  
+
+
+  var checker = false;
+
+  data.forEach(availability => {
+
+    if (availability.available_bike_stands==0) {
+      if (checker==false) {
+        result += "<div class='stand_status'><h3>Full Stations</h3><div style='background-color: green;'>";
+        checker = true;
+      }
+      result += "<p>"+availability.name+"</p>";      
+    }
+  });
+
+  if (checker==true) {
+    result += "</div>";
+  } else {
+    result += "<p>No Full Stands</p>";
+  }
+  result += "</div>";
+
+
+
+  var checker = false;
+
+  data.forEach(availability => {
+
+    if (availability.available_bikes<=3) {
+      if (checker==false) {
+        result += "<div class='stand_status'><h3>Nearly Empty Stations</h3><div style='background-color: green;'>";
+        checker = true;
+      }
+      result += "<p>"+availability.name+"</p>";      
+    }
+  });
+
+  if (checker==true) {
+    result += "</div>";
+  } else {
+    result += "<p>No Nearly Empty Stands</p>";
+  }
+  result += "</div>";
+
+
+
+
+
+
+  var checker = false;
+
+  data.forEach(availability => {
+
+    if (availability.available_bike_stands<=3) {
+      if (checker==false) {
+        result += "<div class='stand_status'><h3>Nearly Full Stations</h3><div style='background-color: green;'>";
+        checker = true;
+      }
+      result += "<p>"+availability.name+"</p>";      
+    }
+  });
+
+  if (checker==true) {
+    result += "</div>";
+  } else {
+    result += "<p>No Nearly Empty Stands</p>";
+  }
+  result += "</div>";
+
+
   
   document.getElementById("stands").innerHTML = result;
 
