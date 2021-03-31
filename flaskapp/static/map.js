@@ -1,9 +1,24 @@
 let map;
+let marker;
 
 function initCharts() {
     google.charts.load('current', {'packages': ['corechart']});
     google.charts.setOnLoadCallback(initMap);
 }
+
+function iconPicker(percentage) {
+
+    if (percentage === 0) {
+        return "http://maps.google.com/mapfiles/ms/micons/red-dot.png";
+    } else if (percentage < 0.25) {
+        return "http://maps.google.com/mapfiles/ms/micons/orange-dot.png";
+    } else if (percentage < 0.50) {
+        return "http://maps.google.com/mapfiles/ms/micons/yellow-dot.png";
+    } else {
+        return "http://maps.google.com/mapfiles/ms/micons/green-dot.png";
+    }
+}
+
 
 
 function initMap() {
@@ -18,27 +33,39 @@ fetch("/stationsquery").then(response => {
     zoom: 14,
   });
 
+  //creating a single infowindow to be used for information display
   const infowindow = new google.maps.InfoWindow({
     content: ''
 
   });
 
+  //for loop to place markers for each station on the map
   data.forEach(station => {
     const marker = new google.maps.Marker({
         position: { lat: station.pos_lat, lng: station.pos_lng },
         map: map,
+        animation: google.maps.Animation.DROP,
+        icon: iconPicker(station.available_bikes/station.bike_stands),
     });
-    marker.addListener("click", () => {
 
+    //on click listener that sets the content of the info window to that of the relevant marker
+    marker.addListener("click",  () => {
+
+
+
+    //updating marker content
     infowindow.setContent("<div class='map_info_div'><h2>"+ station.name + "<h2><h3>Bikes available: "+ station.available_bikes +"<h3>"+
         "<h3>Free stands available: "+ station.available_bike_stands +"<h3>"+
         "<h3>Station status: "+ station.status +"<h3></div>"+
         '</b>');
 
+    //opening the infowindow o
     infowindow.open(map,marker);
     console.log('calling drawOccupancyWeekly' + station.number);
     drawOccupancyWeekly(station.number);
   });
+
+
   });
 
   infoWindow = new google.maps.InfoWindow();
@@ -57,9 +84,14 @@ fetch("/stationsquery").then(response => {
             lat: position.coords.latitude,
             lng: position.coords.longitude,
           };
-          infoWindow.setPosition(pos);
-          infoWindow.setContent("Location found.");
-          infoWindow.open(map);
+
+          const marker = new google.maps.Marker({
+            position: { lat: position.coords.latitude, lng: position.coords.longitude },
+            map: map,
+            animation: google.maps.Animation.DROP,
+            icon: "http://maps.google.com/mapfiles/ms/micons/cycling.png",
+          });
+
           map.setCenter(pos);
         },
         () => {
@@ -134,3 +166,4 @@ function drawOccupancyWeekly(station_number) {
         chart.draw(chart_data, options);
     });
 }
+
