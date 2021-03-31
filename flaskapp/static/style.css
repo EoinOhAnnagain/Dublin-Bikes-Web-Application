@@ -105,6 +105,13 @@ li {
     border-radius: 25px;
  }
 
+ .map_info_div{
+     background-color: rgba(135,186,255,0.9);
+     border-radius: 0px;
+     margin: 1%;
+     padding: 1%;
+ }
+
 
 /* Stations list styling */
 
