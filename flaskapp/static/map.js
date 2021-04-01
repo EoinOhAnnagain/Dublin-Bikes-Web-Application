@@ -31,6 +31,7 @@ fetch("/stationsquery").then(response => {
   map = new google.maps.Map(document.getElementById("map"), {
     center: { lat: 53.349804, lng: -6.260310 },
     zoom: 14,
+    clickableIcons: false,
   });
 
   //creating a single infowindow to be used for information display
