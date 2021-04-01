@@ -144,7 +144,6 @@ tr, td {
     margin: auto;
     padding: 1%;
     border: 1px solid black;
-    text-align: center;
     background-color: #87baff;
 }
 
@@ -162,11 +161,10 @@ td a {
     color: black;
     font-weight: bold;
     font-size: 20px;
-    display: inline!important;
+    float: left;
     position: relative;
-    bottom: 16px;
-    left:0px;
-    padding-right: 90px;
+    top: 8px;
+    left: 10px;
 }
 
 td a:hover {
@@ -178,52 +176,42 @@ td a:hover {
     height: auto;
     position: relative;
     top: 17px;
+    right: 5px;
 }
 
 #bike {
     max-width: 4%;
     height: auto;
-    padding: 10px;
+    padding: 10px 0px;
     position: relative;
     top: 17px;
+    right: 10px;
 }
 
 #update {
     max-width: 2.5%;
     height: auto;
-    padding: 10px;
+    padding: 10px 0px;
     position: relative;
     top: 19px;
+    right: 10px;
 }
 
-.bikeStands {
+p.bikeStands {
     font-weight: bold;
     font-size: 20px;
-    display: inline!important;
-     padding: 50px;
+    text-align: right;
     position: relative;
-    bottom: 18px;
+    bottom: 15px;
+    right:20px;
+
 }
 
-.bikes {
-    font-weight: bold;
-    font-size: 20px;
-    display: inline!important;
-     padding: 50px;
-    position: relative;
-    bottom: 18px;
+td img {
+    margin-left: 120px;
+    opacity: 50%;
+
 }
-
-.updates {
-    font-weight: bold;
-    font-size: 20px;
-    display: inline!important;
-    padding: 50px;
-    position: relative;
-    bottom: 18px;
-}
-
-
 /********************************** Map Div Box Setting ************************************/
 /*************************** VOLATILE: PLEASE DO NOT MESS WITH *****************************/
 
