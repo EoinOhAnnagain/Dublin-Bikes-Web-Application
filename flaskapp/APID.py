@@ -3,19 +3,19 @@
 
 from sqlalchemy import Table, Column, Integer, Float, String, MetaData, DateTime, create_engine
 
-A = "admin"
-B = "admin1234"
-C = "dbikes.ccecuvqpo8jx.us-east-1.rds.amazonaws.com"
-D = "3306"
-E = "dbikes"
+USER = "admin"
+PASSWORD = "dublinbikes"
+URI = "dublinbikes.ciwb2rbkjl8e.us-east-1.rds.amazonaws.com"
+PORT = "3306"
+DB = "dublinbikes"
 
+engine = create_engine("mysql+mysqlconnector://{}:{}@{}:{}/{}".format(USER, PASSWORD, URI, PORT, DB), echo=True)
 
-engine = create_engine(f"mysql+mysqlconnector://{A}:{B}@{C}:{D}/{E}", echo=True)
-
-APIKEY = "9514a54c5679aff7255ccc24632f77b9f319a7f8"
+APIKEY = "541e273750ef405656887b8db71e95bcd8652a47"
 NAME = "Dublin"
 STATIONS = "https://api.jcdecaux.com/vls/v1/stations"
 
-ACCUAPIKEY = "KJboehsXfcHWN6ZfcHm5W8TKN3wlpCV8"
+
+ACCUAPIKEY = "nMc7AXHaW5AJMglz5tWLMMYZImwBGMMi"
 ACCULOCATIONKEY = "207931"
 RESOURCEURL = "http://dataservice.accuweather.com/forecasts/v1/hourly/1hour/"
