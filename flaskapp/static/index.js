@@ -29,7 +29,6 @@ function initStands() {
     checker = false;
   }
 
-
   data.forEach(availability => {
 
     if (availability.available_bikes<=3 && availability.available_bikes!=0) {
@@ -68,7 +67,7 @@ function initStands() {
 
   data.forEach(availability => {
 
-    if (availability.available_bike_stands<=3 && availability.available_bike_stands!=0) {
+    if (availability.available_bike_stands<=3 && availability.available_bike_stands!=1) {
       if (checker==false) {
         result += "<div class='stand_status'><h3><u>Nearly Full Stations</u>&nbsp;</h3><div class='SL'>";
         checker = true;
