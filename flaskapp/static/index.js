@@ -9,7 +9,7 @@ function initStands() {
   }).then(data => {
     console.log("data: ", data);
 
-  result = "<div style='text-align: left;'><h2>Current Availability</h2>";
+  result = "<h2><u>Current Availability</u></h2><div id='CA'>";
 
   var checker = false;
 
@@ -17,7 +17,7 @@ function initStands() {
 
     if (availability.available_bikes==0) {
       if (checker==false) {
-        result += "<div class='stand_status'><h3>Empty Stations</h3><div style='background-color: red;'>";
+        result += "<div class='stand_status'><h3><u>Empty Stations</u></h3>&nbsp;<div class='SL'>";
         checker = true;
       }
       result += "<p>"+availability.name+"</p>";      
@@ -25,23 +25,33 @@ function initStands() {
   });
 
   if (checker==true) {
-    result += "</div>";
-  } else {
-    result += "<p>No Empty Stands</p>";
+    result += "</div></div>";
+    checker = false;
   }
-  result += "</div>";
+
+  data.forEach(availability => {
+
+    if (availability.available_bikes<=3 && availability.available_bikes!=0) {
+      if (checker==false) {
+        result += "<div class='stand_status'><h3><u>Nearly Empty Stations</u></h3>&nbsp;<div class='SL'>";
+        checker = true;
+      }
+      result += "<p>"+availability.name+"</p>";      
+    }
+  });
+
+  if (checker==true) {
+    result += "</div></div>";
+    checker = false;
+  }
 
 
-  
-
-
-  var checker = false;
 
   data.forEach(availability => {
 
     if (availability.available_bike_stands==0) {
       if (checker==false) {
-        result += "<div class='stand_status'><h3>Full Stations</h3><div style='background-color: green;'>";
+        result += "<div class='stand_status'><h3><u>Full Stations</u>&nbsp;</h3><div class='SL'>";
         checker = true;
       }
       result += "<p>"+availability.name+"</p>";      
@@ -49,21 +59,17 @@ function initStands() {
   });
 
   if (checker==true) {
-    result += "</div>";
-  } else {
-    result += "<p>No Full Stands</p>";
+    result += "</div></div>";
+    checker = false;
   }
-  result += "</div>";
 
 
-
-  var checker = false;
 
   data.forEach(availability => {
 
-    if (availability.available_bikes<=3) {
+    if (availability.available_bike_stands<=3 && availability.available_bike_stands!=1) {
       if (checker==false) {
-        result += "<div class='stand_status'><h3>Nearly Empty Stations</h3><div style='background-color: green;'>";
+        result += "<div class='stand_status'><h3><u>Nearly Full Stations</u>&nbsp;</h3><div class='SL'>";
         checker = true;
       }
       result += "<p>"+availability.name+"</p>";      
@@ -71,35 +77,10 @@ function initStands() {
   });
 
   if (checker==true) {
-    result += "</div>";
-  } else {
-    result += "<p>No Nearly Empty Stands</p>";
+    result += "</div></div>";
+    checker = false;
   }
-  result += "</div>";
 
-
-
-
-
-
-  var checker = false;
-
-  data.forEach(availability => {
-
-    if (availability.available_bike_stands<=3) {
-      if (checker==false) {
-        result += "<div class='stand_status'><h3>Nearly Full Stations</h3><div style='background-color: green;'>";
-        checker = true;
-      }
-      result += "<p>"+availability.name+"</p>";      
-    }
-  });
-
-  if (checker==true) {
-    result += "</div>";
-  } else {
-    result += "<p>No Nearly Empty Stands</p>";
-  }
   result += "</div>";
 
 
