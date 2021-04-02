@@ -17,7 +17,7 @@ function initStands() {
 
     if (availability.available_bikes==0) {
       if (checker==false) {
-        result += "<div class='stand_status'><h3><u>Empty Stations</u></h3><div class='SL'>";
+        result += "<div class='stand_status'><h3><u>Empty Stations</u></h3>&nbsp;<div class='SL'>";
         checker = true;
       }
       result += "<p>"+availability.name+"</p>";      
@@ -34,7 +34,7 @@ function initStands() {
 
     if (availability.available_bikes<=3 && availability.available_bikes!=0) {
       if (checker==false) {
-        result += "<div class='stand_status'><h3><u>Nearly Empty Stations</u></h3><div class='SL'>";
+        result += "<div class='stand_status'><h3><u>Nearly Empty Stations</u></h3>&nbsp;<div class='SL'>";
         checker = true;
       }
       result += "<p>"+availability.name+"</p>";      
@@ -52,24 +52,7 @@ function initStands() {
 
     if (availability.available_bike_stands==0) {
       if (checker==false) {
-        result += "<div class='stand_status'><h3><u>Full Stations</u></h3><div class='SL'>";
-        checker = true;
-      }
-      result += "<p>"+availability.name+"</p>";      
-    }
-  });
-
-  if (checker==true) {
-    result += "</div></div>";
-    checker = false;
-  }
-
-
-  data.forEach(availability => {
-
-    if (availability.available_bikes<=3 && availability.available_bikes!=0) {
-      if (checker==false) {
-        result += "<div class='stand_status'><h3><u>Nearly Empty Stations</u></h3><div class='SL'>";
+        result += "<div class='stand_status'><h3><u>Full Stations</u>&nbsp;</h3><div class='SL'>";
         checker = true;
       }
       result += "<p>"+availability.name+"</p>";      
@@ -87,7 +70,7 @@ function initStands() {
 
     if (availability.available_bike_stands<=3 && availability.available_bike_stands!=0) {
       if (checker==false) {
-        result += "<div class='stand_status'><h3><u>Nearly Full Stations</u></h3><div class='SL'>";
+        result += "<div class='stand_status'><h3><u>Nearly Full Stations</u>&nbsp;</h3><div class='SL'>";
         checker = true;
       }
       result += "<p>"+availability.name+"</p>";      
