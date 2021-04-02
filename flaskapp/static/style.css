@@ -296,7 +296,8 @@ td img {
 .float_box {
     background-color: teal;
     vertical-align: top;
-    width: 46%;
+    width: 48%;
+    min-width: 40%;
     margin: auto;
     display: inline-block;
     padding-left: 10px;
