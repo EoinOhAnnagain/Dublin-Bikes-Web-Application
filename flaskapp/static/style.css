@@ -259,8 +259,8 @@ td img {
 }
 
 #CA {
-    text-align: left;
-    margin: 0;
+    width: auto;
+    margin: auto;
     padding: 0;
 }
 
@@ -270,8 +270,8 @@ td img {
     margin-right: 1%;
     padding-left: 0.5%;
     background-color: #87baff;
-    max-width: 25%;
-    min-width: 20%;
+    max-width: 40%;
+    min-width: 40%;
     display: inline-block;
     vertical-align: top;
     text-align: left;
@@ -285,4 +285,25 @@ td img {
     padding-left: 5%;
     max-height: 30%;
     overflow-y: auto;
+}
+
+.TES {
+    background-color: lightcoral;
+    margin: 0;
+    padding: 0;
+}
+
+.float_box {
+    background-color: teal;
+    vertical-align: top;
+    width: 46%;
+    margin: auto;
+    display: inline-block;
+    padding-left: 10px;
+    padding-right: 10px;
+    border: 2px solid red;
+}
+
+.line {
+    border: 1px solid black;
 }

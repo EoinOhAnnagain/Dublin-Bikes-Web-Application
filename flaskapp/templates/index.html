@@ -15,6 +15,11 @@ Home
 {% endblock %}
 
 {% block content %}
+    <div class='float_box'>
+        <h2><u>Current Availability</u></h2>
 <div id="stands"><img class="loading" src="{{ url_for('static', filename='loading.gif')}}"/></div>
-<div id="weather"></div>
+    </div><div class='float_box'>
+        <h2><u>Weather Widget</u></h2>
+<div id="weather"><img class="loading" src="{{ url_for('static', filename='loading.gif')}}"/></div>
+</div>
 {% endblock %}

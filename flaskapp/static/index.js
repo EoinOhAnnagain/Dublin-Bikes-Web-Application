@@ -9,7 +9,9 @@ function initStands() {
   }).then(data => {
     console.log("data: ", data);
 
-  result = "<h2><u>Current Availability</u></h2><div id='CA'>";
+  result = "<div id='CA'>";
+
+  result += "<div class='TES'>"
 
   var checker = false;
 
@@ -41,11 +43,11 @@ function initStands() {
   });
 
   if (checker==true) {
-    result += "</div></div>";
+    result += "</div class='line'></div>";
     checker = false;
   }
 
-
+  result += "</div><div></div><div class='TES'>"
 
   data.forEach(availability => {
 
@@ -67,7 +69,7 @@ function initStands() {
 
   data.forEach(availability => {
 
-    if (availability.available_bike_stands<=3 && availability.available_bike_stands!=1) {
+    if (availability.available_bike_stands<=3 && availability.available_bike_stands!=0) {
       if (checker==false) {
         result += "<div class='stand_status'><h3><u>Nearly Full Stations</u>&nbsp;</h3><div class='SL'>";
         checker = true;
@@ -81,11 +83,12 @@ function initStands() {
     checker = false;
   }
 
-  result += "</div>";
+  result += "</div></div>";
 
 
   
   document.getElementById("stands").innerHTML = result;
+  document.getElementById("loading_box").innerHTML = '';
 
   }).catch(err => {
     console.log("OOPS!", err);
@@ -107,7 +110,7 @@ function initWeather() {
     }).then(data => {
       console.log("data: ", data);
 
-    result = "<div style='text-align: left;'><h2>  Current Weather</h2><iframe src='https://free.timeanddate.com/clock/i7qn1g4m/n78/tlie/ftb/tt0/tw1/tm1/th1/tb4' frameborder='0' width='121' height='34'></iframe>";
+    result = "<div style='text-align: left;'><iframe src='https://free.timeanddate.com/clock/i7qn1g4m/n78/tlie/ftb/tt0/tw1/tm1/th1/tb4' frameborder='0' width='121' height='34'></iframe>";
 
     result += "<table id='weaterTable'></table>"
 
