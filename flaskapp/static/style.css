@@ -7,13 +7,16 @@
 body {
     background-color: #000081;
     text-align: center;
+    max-height: 88%;
 }
 
 div {
     border-radius: 25px;
+    border-bottom-right-radius: 0;
     background-color: white;
     margin: 1%;
     max-width: 3000px;
+    border: 1px solid black;
 }
 
 .header {
@@ -30,10 +33,12 @@ div {
     height: 40%;
     width: auto;
     border-radius: 25px;
+    border-bottom-right-radius: 0;
 }
 
 .title {
     max-width: 95%;
+    height: auto;
 }
 .page {
     width: 95%;
@@ -74,6 +79,7 @@ li {
     background-color: white;
     border: 1px solid black;
     border-radius: 25px;
+    border-bottom-right-radius: 0;
     width: 20%;
     min-width: 100px;
     margin: auto;
@@ -103,6 +109,7 @@ li {
     margin: auto;
     margin-bottom: 1%;
     border-radius: 25px;
+    border-bottom-right-radius: 0;
  }
 
 /* Stations list styling */
@@ -139,6 +146,7 @@ a li:hover {
 tr, td {
     border: 1px solid black;
     border-radius: 25px;
+    border-bottom-right-radius: 0;
     width: 1500px;
     max-width: 90%;
     margin: auto;
@@ -243,7 +251,6 @@ td a:hover {
 
 #map_info_div{
     background-color: rgba(135,186,255,0.9);
-    border-radius: 0px;
     margin: 1%;
     padding: 1%;
 }
@@ -258,4 +265,28 @@ td a:hover {
 #chart2 {
     height: auto;
     width: auto;
+}
+
+#CA {
+    text-align: left;
+    margin: 0;
+    padding: 0;
+}
+
+.stand_status {
+    margin-left: 1%;
+    margin-right: 1%;
+    padding 1%;
+    background-color: #87baff;
+    max-width: 25%;
+    display: inline-block;
+    vertical-align: top;
+    text-align: left;
+}
+
+.SL {
+    margin: 0;
+    background-color: inherit;
+    max-height: 30%;
+    overflow: auto;
 }
