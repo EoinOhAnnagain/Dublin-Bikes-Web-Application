@@ -159,11 +159,16 @@ function initWeather() {
 
       result += "<div class='line'></div>";
 
+      result += "<div class='float_box2'><p>Wind Speed: " + weather.WindSpeed + "kph</p></div>";
+      result += "<div class='float_box2'><p>Cloud Cover: " + weather.CloudCover + "%</p></div>";
       
-      result += "<div class='float_box2'><p>Precipitation Probability: " + weather.PrecipitationProbability + "</p></div>";
-      result += "<div class='float_box2'><p>Rain: " + weather.Rain + "</p></div>";
-      result += "<div class='float_box2'><p>Wind Speed: " + weather.WindSpeed + "</p></div>";
-      result += "<div class='float_box2'><p>Cloud Cover: " + weather.CloudCover + "</p></div>";
+      result += "<div class='line'></div>";
+
+      result += "<div class='float_box2'><p>Precipitation Probability: " + weather.PrecipitationProbability + "%</p></div>";
+      if (weather.rain!=0 && weather.PrecipitationProbability!=0) {
+        result += "<div class='float_box2'><p>Rain: " + weather.Rain + "mm</p></div>";
+      }
+      
     });
     
     
