@@ -16,6 +16,7 @@ div {
     background-color: white;
     margin: 1%;
     max-width: 3000px;
+    border: 1px solid black;
 }
 
 .header {
@@ -273,7 +274,6 @@ td img {
     min-width: 40%;
     display: inline-block;
     vertical-align: top;
-    text-align: left;
 }
 
 .SL {
@@ -281,10 +281,21 @@ td img {
     min-width: 20%;
     background-color: inherit;
     padding-right: 1%;
-    padding-left: 5%;
+    padding-left: 1%;
     max-height: 30%;
     overflow-y: auto;
 }
+
+.SLC {
+    margin: 0;
+    min-width: 20%;
+    background-color: inherit;
+    padding-right: 1%;
+    padding-left: 1%;
+    max-height: 10%;
+    overflow-y: auto;
+}
+
 
 .TES {
     margin: 0;
@@ -323,5 +334,9 @@ td img {
     margin: auto;
     border-radius: 25px;
     border-bottom-right-radius: 0;
+}
+
+.closed {
+    background-color: salmon;
 }
 

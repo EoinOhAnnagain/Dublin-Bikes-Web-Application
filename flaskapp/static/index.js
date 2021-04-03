@@ -15,6 +15,31 @@ function initStands() {
 
   var checker = false;
 
+
+  data.forEach(availability => {
+
+    if (availability.status != "OPEN") {
+      if (checker==false) {
+        result += "<div class='closed'><h3><u>Closed Stations</u>&nbsp;</h3><div class='SLC'>";
+        checker = true;
+      }
+      result += "<p>"+availability.name+"</p>";      
+    }
+  });
+
+  if (checker==true) {
+    result += "</div></div>";
+    result += "</div><div class='line'></div>";
+    checker = false;
+  }
+
+  result += "</div></div>";
+
+  
+
+
+
+
   data.forEach(availability => {
 
     if (availability.available_bikes==0) {
@@ -85,6 +110,7 @@ function initStands() {
 
   result += "</div></div>";
 
+  
 
   
   document.getElementById("stands").innerHTML = result;

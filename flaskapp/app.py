@@ -14,7 +14,7 @@ def hello():
 
 @app.route("/bike_stand_query")
 def bike_stand_query():
-    dfe = pd.read_sql_query("SELECT name, available_bikes, available_bike_stands FROM availability ORDER BY post_time DESC LIMIT 109", engine)
+    dfe = pd.read_sql_query("SELECT name, available_bikes, available_bike_stands, status FROM availability ORDER BY post_time DESC LIMIT 109", engine)
     return dfe.to_json(orient='records')
 
 @app.route("/home_weather_query")
