@@ -16,7 +16,6 @@ div {
     background-color: white;
     margin: 1%;
     max-width: 3000px;
-    border: 1px solid black;
 }
 
 .header {
@@ -332,6 +331,7 @@ td img {
     background-color: #87baff;
     width: 50%;
     margin: auto;
+    margin-top: 0;
     border-radius: 25px;
     border-bottom-right-radius: 0;
 }
@@ -339,4 +339,3 @@ td img {
 .closed {
     background-color: salmon;
 }
-
