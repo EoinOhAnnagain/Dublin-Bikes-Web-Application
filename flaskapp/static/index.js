@@ -190,7 +190,32 @@ function initWeather() {
       
       result += "<div class='line'></div>";
 
-      result += "<div class='float_box2'><p>Precipitation Probability: " + weather.PrecipitationProbability + "%</p></div>";
+      var pp = weather.PrecipitationProbability;
+      if (pp==0) {
+        result += "<div class='float_box2'><p>Precipitation Probability: " + pp + "%</p></div>";
+      } else if (weather.PrecipitationProbability<10) {
+        result += "<div class='float_box2'  style='background-image: linear-gradient(blue, #87baff, #87baff, #87baff, #87baff, #87baff, #87baff, #87baff, #87baff, #87baff, #87baff)'><p>Precipitation Probability: " + pp + "%</p></div>";
+      } else if (weather.PrecipitationProbability<20) {
+        result += "<div class='float_box2'  style='background-image: linear-gradient(blue, blue, #87baff, #87baff, #87baff, #87baff, #87baff, #87baff, #87baff, #87baff, #87baff)'><p>Precipitation Probability: " + pp + "%</p></div>";
+      } else if (weather.PrecipitationProbability<30) {
+        result += "<div class='float_box2'  style='background-image: linear-gradient(blue, blue, blue, #87baff, #87baff, #87baff, #87baff, #87baff, #87baff, #87baff, #87baff)'><p>Precipitation Probability: " + pp + "%</p></div>";
+      } else if (weather.PrecipitationProbability<40) {
+        result += "<div class='float_box2'  style='background-image: linear-gradient(blue, blue, blue, blue, #87baff, #87baff, #87baff, #87baff, #87baff, #87baff, #87baff)'><p>Precipitation Probability: " + pp + "%</p></div>";
+      } else if (weather.PrecipitationProbability<50) {
+        result += "<div class='float_box2'  style='background-image: linear-gradient(blue, blue, blue, blue, blue, #87baff, #87baff, #87baff, #87baff, #87baff, #87baff)'><p>Precipitation Probability: " + pp + "%</p></div>";
+      } else if (weather.PrecipitationProbability<60) {
+        result += "<div class='float_box2'  style='background-image: linear-gradient(blue, blue, blue, blue, blue, blue, #87baff, #87baff, #87baff, #87baff, #87baff)'><p>Precipitation Probability: " + pp + "%</p></div>";
+      } else if (weather.PrecipitationProbability<70) {
+        result += "<div class='float_box2'  style='background-image: linear-gradient(blue, blue, blue, blue, blue, blue, blue, #87baff, #87baff, #87baff, #87baff)'><p>Precipitation Probability: " + pp + "%</p></div>";
+      } else if (weather.PrecipitationProbability<80) {
+        result += "<div class='float_box2'  style='background-image: linear-gradient(blue, blue, blue, blue, blue, blue, blue, blue, #87baff, #87baff, #87baff)'><p>Precipitation Probability: " + pp + "%</p></div>";
+      } else if (weather.PrecipitationProbability<90) {
+        result += "<div class='float_box2'  style='background-image: linear-gradient(blue, blue, blue, blue, blue, blue, blue, blue, blue, #87baff, #87baff)'><p>Precipitation Probability: " + pp + "%</p></div>";
+      } else if (weather.PrecipitationProbability<100) {
+        result += "<div class='float_box2'  style='background-image: linear-gradient(blue, blue, blue, blue, blue, blue, blue, blue, blue, blue, #87baff)'><p>Precipitation Probability: " + pp + "%</p></div>";
+      } else {
+        result += "<div class='float_box2'  style='background-image: linear-gradient(blue, blue, blue, blue, blue, blue, blue, blue, blue, blue, blue)'><p>Precipitation Probability: " + pp + "%</p></div>";
+      }
       if (weather.rain!=0 && weather.PrecipitationProbability!=0) {
         result += "<div class='float_box2'><p>Rain: " + weather.Rain + "mm</p></div>";
       }
