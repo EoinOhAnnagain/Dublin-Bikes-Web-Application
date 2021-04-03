@@ -7,7 +7,7 @@
 body {
     background-color: #000081;
     text-align: center;
-    max-height: 88%;
+    max-height: 95%;
 }
 
 div {
@@ -16,7 +16,6 @@ div {
     background-color: white;
     margin: 1%;
     max-width: 3000px;
-    border: 1px solid black;
 }
 
 .header {
@@ -101,7 +100,7 @@ li {
     height: auto;
     margin: 0.15%;
     margin-top: 1%;
-    max-height: 62%;
+    max-height: 64%;
     overflow-y: auto;
 }
 
@@ -288,13 +287,11 @@ td img {
 }
 
 .TES {
-    background-color: lightcoral;
     margin: 0;
     padding: 0;
 }
 
 .float_box {
-    background-color: teal;
     vertical-align: top;
     width: 48%;
     min-width: 40%;
@@ -302,9 +299,29 @@ td img {
     display: inline-block;
     padding-left: 10px;
     padding-right: 10px;
-    border: 2px solid red;
 }
 
 .line {
     border: 1px solid black;
 }
+
+.float_box2 {
+    background-color: #87baff;
+    vertical-align: top;
+    width: 40%;
+    min-width: 40%;
+    margin: auto;
+    display: inline-block;
+    padding-left: 10px;
+    padding-right: 10px;
+    border: 10px solid white;
+}
+
+.icon_phrase {
+    background-color: #87baff;
+    width: 50%;
+    margin: auto;
+    border-radius: 25px;
+    border-bottom-right-radius: 0;
+}
+

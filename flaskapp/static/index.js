@@ -43,11 +43,11 @@ function initStands() {
   });
 
   if (checker==true) {
-    result += "</div class='line'></div>";
+    result += "</div></div>";
     checker = false;
   }
 
-  result += "</div><div></div><div class='TES'>"
+  result += "</div><div class='line'></div><div class='TES'>"
 
   data.forEach(availability => {
 
@@ -110,31 +110,63 @@ function initWeather() {
     }).then(data => {
       console.log("data: ", data);
 
-    result = "<div style='text-align: left;'><iframe src='https://free.timeanddate.com/clock/i7qn1g4m/n78/tlie/ftb/tt0/tw1/tm1/th1/tb4' frameborder='0' width='121' height='34'></iframe>";
+    result = "<div class='icon_phrase'><iframe src='https://free.timeanddate.com/clock/i7qvq4vq/n78/tlie/fs16/tct/pct/ftb/tt0/tw1/tm1/tb2' frameborder='0' width='205' height='20' allowtransparency='true'></iframe></div><br>";
 
-    result += "<table id='weaterTable'></table>"
-
+    
     data.forEach(weather => {
       var icon = weather.WeatherIcon;
       var iconPic = "<img class='loading' src='static/weatherIcons/"+icon+".gif'>";
       var iconList = [1, 2, 3, 4, 6, 7, 11, 12, 13,14, 18, 34, 35, 36, 38, 40];
 
-      result += "<p>Temperature: " + weather.Temperature + "ºC</p>";
-      result += "<p>Real Feel Temperature: " + weather.RealFeelTemperature + "ºC</p>";
+  
+
+
+
+
+
+
+
+
       if (iconList.includes(icon)==true) {
         result += iconPic;
       } else {
         result += "<img class='loading' src='static/weatherIcons/unknown.gif'>";
       }
-      result += weather.IconPhrase;
-      result += "<p>Icon: " + icon + "</p>";
-      result += "<p>Precipitation Probability: " + weather.PrecipitationProbability + "</p>";
-      result += "<p>Rain: " + weather.Rain + "</p>";
-      result += "<p>Relative Humidity: " + weather.RelativeHumidity + "</p>";
-      result += "<p>Wind Speed: " + weather.WindSpeed + "</p>";
+      result += "<h3 class='icon_phrase'>"+weather.IconPhrase+"</h3>";
+
+      result += "<div class='line'></div><div class='TES'>";
+
+      
+      if (weather.Temperature >= 15) {
+        result += "<div class='float_box2' style='background-image: linear-gradient(to right, #87baff, #87baff, red)'><p>TEMPERATURE: ";
+      } else if (weather.Temperature >=7) {
+        result += "<div class='float_box2' style='background-image: linear-gradient(to right, #87baff, #87baff, orange)'><p>TEMPERATURE: ";
+      } else {
+        result += "<div class='float_box2' style='background-image: linear-gradient(to right, #87baff, #87baff, blue)'><p>TEMPERATURE: ";
+      }
+      result += weather.Temperature + "ºC</p></div>";
+
+      if (weather.RealFeelTemperature >= 15) {
+        result += "<div class='float_box2' style='background-image: linear-gradient(to right, #87baff, #87baff, red)'><p>REAL FEEL TEMPERATURE: ";
+      } else if (weather.RealFeelTemperature >=7) {
+        result += "<div class='float_box2' style='background-image: linear-gradient(to right, #87baff, #87baff, orange)'><p>REAL FEEL TEMPERATURE: ";
+      } else {
+        result += "<div class='float_box2' style='background-image: linear-gradient(to right, #87baff, #87baff, blue)'><p>REAL FEEL TEMPERATURE: ";
+      }
+      result += weather.RealFeelTemperature + "ºC</p></div>";
+
+      result += "<div class='float_box2'><p>Relative Humidity: " + weather.RelativeHumidity + "%</p></div>";
+
+      result += "<div class='line'></div>";
+
+      
+      result += "<div class='float_box2'><p>Precipitation Probability: " + weather.PrecipitationProbability + "</p></div>";
+      result += "<div class='float_box2'><p>Rain: " + weather.Rain + "</p></div>";
+      result += "<div class='float_box2'><p>Wind Speed: " + weather.WindSpeed + "</p></div>";
+      result += "<div class='float_box2'><p>Cloud Cover: " + weather.CloudCover + "</p></div>";
     });
     
-    result += "</div>"
+    
       
     
     document.getElementById("weather").innerHTML = result;
