@@ -186,7 +186,23 @@ function initWeather() {
       result += "<div class='line'></div>";
 
       result += "<div class='float_box2'><p>Wind Speed: " + weather.WindSpeed + "kph</p></div>";
-      result += "<div class='float_box2'><p>Cloud Cover: " + weather.CloudCover + "%</p></div>";
+
+
+
+      var cc = weather.CloudCover;
+      if (cc==0) {
+        result += "<div class='float_box2'><p>Cloud Cover: " + cc + "%</p></div>";
+      } else if (cc<20) {
+        result += "<div class='float_box2' style='background-image: linear-gradient(rgba(169, 169, 169, 0.2), #87baff);'><p>Cloud Cover: " + cc + "%</p></div>";
+      } else if (cc<40) {
+        result += "<div class='float_box2' style='background-image: linear-gradient(rgba(169, 169, 169, 0.4), #87baff);'><p>Cloud Cover: " + cc + "%</p></div>";        
+      } else if (cc<60) {
+        result += "<div class='float_box2' style='background-image: linear-gradient(rgba(169, 169, 169, 0.6), #87baff);'><p>Cloud Cover: " + cc + "%</p></div>";
+      } else if (cc<80) {
+        result += "<div class='float_box2' style='background-image: linear-gradient(rgba(169, 169, 169, 0.8), #87baff);'><p>Cloud Cover: " + cc + "%</p></div>";
+      } else {
+        result += "<div class='float_box2' style='background-image: linear-gradient(rgba(169, 169, 169, 1), #87baff);'><p>Cloud Cover: " + cc + "%</p></div>";
+      }
       
       result += "<div class='line'></div>";
 
