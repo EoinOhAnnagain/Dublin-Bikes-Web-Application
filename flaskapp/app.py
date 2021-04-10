@@ -7,6 +7,13 @@ from functools import lru_cache
 
 app = Flask(__name__)
 
+
+
+
+
+
+## Index Page
+
 @app.route("/home")
 @app.route("/")
 def hello():
@@ -22,18 +29,16 @@ def home_weather_query():
     dfw = pd.read_sql_query("SELECT * FROM weather ORDER BY post_time DESC LIMIT 1", engine)
     return dfw.to_json(orient='records')
 
-@app.route("/test")
-def hi():
-    return render_template("test.html")
 
-@app.route("/about")
-def about():
-    return app.send_static_file("about.html")
+
+
+
+
+## Maps Page
 
 @app.route("/map")
 def map_integrated():
     return render_template("map.html")
-
 
 @app.route("/mapquery")
 #@functools.memoise()
@@ -44,6 +49,13 @@ def mapquery():
     #results = engine.execute("select * from stations")
     #print([res for res in results])
     return df.to_json(orient="records")
+
+
+
+
+
+
+## Stations Page
 
 @app.route("/stations")
 def stations():
@@ -75,6 +87,13 @@ def get_occupancy(station_id):
     res_df['last_update'] = res_df.index
     res_df = res_df.tail(32)
     return res_df.to_json(orient='records')
+
+
+
+
+
+
+
 
 if __name__ == "__main__":
     app.run(debug=True, port=5000)
