@@ -12,17 +12,23 @@ class FlaskTest(unittest.TestCase):
 
     def test_index(self):
         tester = app.test_client(self)
-
         response = tester.get("/")
+
         statuscode = response.status_code
         self.assertEqual(statuscode, 200)
         
     def test_index2(self):
         tester = app.test_client(self)
-
         response = tester.get("/home")
+
         statuscode = response.status_code
         self.assertEqual(statuscode, 200)
+
+    def test_index_content(self):
+        tester = app.test_client(self)
+        response = tester.get("/")
+
+        self.assertEqual(response.content_type, "text/html; charset=utf-8")
 
 
 
@@ -35,6 +41,12 @@ class FlaskTest(unittest.TestCase):
         statuscode = response.status_code
         self.assertEqual(statuscode, 200)
 
+    def test_map_content(self):
+        tester = app.test_client(self)
+        response = tester.get("/map")
+
+        self.assertEqual(response.content_type, "text/html; charset=utf-8")
+
 
 
     ## Stations tests
@@ -46,7 +58,11 @@ class FlaskTest(unittest.TestCase):
         statuscode = response.status_code
         self.assertEqual(statuscode, 200)
 
+    def test_stations_content(self):
+        tester = app.test_client(self)
+        response = tester.get("/stations")
 
+        self.assertEqual(response.content_type, "text/html; charset=utf-8")
 
 
         
