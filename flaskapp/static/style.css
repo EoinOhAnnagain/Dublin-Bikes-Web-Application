@@ -245,6 +245,15 @@ td img {
     padding: 1%;
 }
 
+#predictions {
+    width: 30%;
+    padding: auto;
+    margin: auto;
+    height: auto;
+
+
+}
+
 /*******************************************************************************************/
 
 #chart1 {
