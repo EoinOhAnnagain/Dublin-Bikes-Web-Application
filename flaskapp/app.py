@@ -56,11 +56,6 @@ def stationsquery():
     #print([res for res in results])
     return df.to_json(orient='records')
 
-@app.route("/weatherquery")
-def weatherquery():
-    df = pd.read_sql_query("SELECT * FROM weatherForecast ORDER BY EpochDateTime", engine)
-    return df.to_json(orient='records')
-
 @app.route("/occupancy/<int:station_id>")
 @lru_cache # temporarily cache result
 def get_occupancy(station_id):
