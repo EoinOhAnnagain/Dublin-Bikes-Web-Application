@@ -30,6 +30,15 @@ class FlaskTest(unittest.TestCase):
 
         self.assertEqual(response.content_type, "text/html; charset=utf-8")
 
+    def test_index_data(self):
+        tester = app.test_client(self)
+        response = tester.get("/")
+
+        self.assertTrue(b'Home Page' in response.data)
+        self.assertTrue(b'Home' in response.data)
+        self.assertTrue(b'<html>' in response.data)
+        self.assertTrue(b'</html>' in response.data)
+
 
 
     ## Map tests
@@ -47,6 +56,15 @@ class FlaskTest(unittest.TestCase):
 
         self.assertEqual(response.content_type, "text/html; charset=utf-8")
 
+    def test_map_data(self):
+        tester = app.test_client(self)
+        response = tester.get("/map")
+
+        self.assertTrue(b'Map Page' in response.data)
+        self.assertTrue(b'Stations Map' in response.data)
+        self.assertTrue(b'<html>' in response.data)
+        self.assertTrue(b'</html>' in response.data)
+
 
 
     ## Stations tests
@@ -63,6 +81,17 @@ class FlaskTest(unittest.TestCase):
         response = tester.get("/stations")
 
         self.assertEqual(response.content_type, "text/html; charset=utf-8")
+
+    def test_stations_data(self):
+        tester = app.test_client(self)
+        response = tester.get("/stations")
+
+        self.assertTrue(b'Stations List' in response.data)
+        self.assertTrue(b'Stations' in response.data)
+        self.assertTrue(b'<html>' in response.data)
+        self.assertTrue(b'</html>' in response.data)
+
+    
 
 
         
