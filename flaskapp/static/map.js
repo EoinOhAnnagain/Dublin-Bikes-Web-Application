@@ -190,7 +190,7 @@ function selectStation() {
 
       data.forEach(station => {
 
-        result += "<option value=" + station.name + ">" + station.name + "</option><br>";
+        result += "<option value=" + station.number + ">" + station.name + "</option><br>";
      });
 
     result += "</select>";
@@ -205,7 +205,7 @@ function selectStation() {
 // function to generate dates within dropdown menu
 function selectDate() {
     result = "<label for='dates'>Select a date: </label>" +
-        "<select name='datelist' id='selectedDate'>" +
+        "<select name='datelist' id='selectedDate' onchange='selectTime()'>" +
         "<option value='' disabled selected>select date</option><br>";
 
     for (var i = 0; i < 7; i++) {
@@ -218,7 +218,7 @@ function selectDate() {
 
     var formattedDate = dd + '/' + mm + '/' + y;
 
-    result += "<option value=" + formattedDate + ">" + formattedDate + "</option><br>";
+    result += "<option value=" + dd + ">" + formattedDate + "</option><br>";
 }
     result += "</select>";
     document.getElementById("dateSelector").innerHTML = result;
@@ -232,17 +232,39 @@ function selectTime() {
       "<select name='timelist' id='selectedTime'>" +
           "<option value='' disabled selected>select time</option><br>";
 
-      for (var i=0; i<1400; i+= 60) {
-        var hours = Math.floor(i/60);
-        if (hours < 10) {
+      var date = new Date();
+      date.setDate(date.getDate() );
+      var dd = date.getDate();
+      var mm = date.getMonth() + 1;
+      var y = date.getFullYear();
+      var h = date.getHours();
+
+      var chosenDate = document.getElementById('selectedDate').value;
+
+      if (chosenDate == dd) {
+          for (var i=h*60; i<1400; i+= 60) {
+          var hours = Math.floor(i/60);
+          var valueHours = Math.floor(i/60);
+          if (hours < 10) {
             hours = '0' + hours;
         }
-
-        result += "<option value=" + hours + ":" + "00" + ">" + hours + ":" + "00" + "</option><br>";
+        result += "<option value=" + valueHours  + ">" + hours + ":" + "00" + "</option><br>";
       }
-
     result += "</select>";
     document.getElementById("timeSelector").innerHTML = result;
+      }
+      else {
+          for (var i=0; i<1400; i+= 60) {
+          var hours = Math.floor(i/60);
+          var valueHours = Math.floor(i/60);
+          if (hours < 10) {
+            hours = '0' + hours;
+        }
+        result += "<option value=" + valueHours  + ">" + hours + ":" + "00" + "</option><br>";
+      }
+    result += "</select>";
+    document.getElementById("timeSelector").innerHTML = result;
+      }
 }
 
 
