@@ -14,8 +14,8 @@ class FlaskTest(unittest.TestCase):
     ## Index tests
 
     def test_index(self):
-        '''This test checks that the correct status code is returned when accessing the index page.
-            It will fail if the status code returned is not 200'''
+        """This test checks that the correct status code is returned when accessing the index page.
+            It will fail if the status code returned is not 200."""
         tester = app.test_client(self)
         response = tester.get("/")
 
@@ -23,8 +23,8 @@ class FlaskTest(unittest.TestCase):
         self.assertEqual(statuscode, 200)
         
     def test_index2(self):
-        '''This is a second test on the status code for index using its second access point of /home
-            This route is not checked for the remaining tests on index as if both as successful then the remaining tests will have identical responces'''
+        """This is a second test on the status code for index using its second access point of /home
+            This route is not checked for the remaining tests on index as if both as successful then the remaining tests will have identical responces."""
         tester = app.test_client(self)
         response = tester.get("/home")
 
@@ -32,15 +32,15 @@ class FlaskTest(unittest.TestCase):
         self.assertEqual(statuscode, 200)
 
     def test_index_content(self):
-        '''Check on the type of content that is returned.
-            Expected return is text/html; charset=utf-8'''
+        """Check on the type of content that is returned.
+            Expected return is text/html; charset=utf-8."""
         tester = app.test_client(self)
         response = tester.get("/")
 
         self.assertEqual(response.content_type, "text/html; charset=utf-8")
 
     def test_index_data(self):
-        '''Check on the data returned. Makes several check.'''
+        """Check on the data returned. Makes several check."""
         tester = app.test_client(self)
         response = tester.get("/")
 
