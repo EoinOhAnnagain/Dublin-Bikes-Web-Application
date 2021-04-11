@@ -7,10 +7,96 @@ window.onload = function() {
     selectTime();
 };
 
+function calculateAndDisplayRoute(directionsService, directionsRenderer) {
+var originCoord = document.getElementById("originDropDown").value;
+var destinationCoord = document.getElementById("destinationDropDown").value;
+
+console.log(originCoord[0],originCoord[1],originCoord[0]);
+console.log(destinationCoord[0],destinationCoord[0],destinationCoord[1]);
+  directionsService.route(
+    {
+      origin: {
+        query: document.getElementById("originDropDown").value,
+      },
+      destination: {
+        query: document.getElementById("destinationDropDown").value,
+      },
+      travelMode: google.maps.TravelMode.DRIVING,
+    },
+    (response, status) => {
+      if (status === "OK") {
+        directionsRenderer.setDirections(response);
+      } else {
+        window.alert("Directions request failed due to " + status);
+      }
+    }
+  );
+}
+
+function populateDirectionSelection() {
+    console.log("populateDirectionSelection function working");
+    fetch("/stationsquery").then(response => {
+        return response.json();
+        }).then(data => {
+        console.log("data: ", data);
+
+
+
+        data.forEach(station => {
+
+            var originDropDown = document.getElementById("originDropDown");
+
+            var opt = document.createElement("option");
+            opt.value = [station.pos_lat, station.pos_lng];
+            opt.innerHTML = station.name;
+
+            originDropDown.add(opt);
+        });
+
+    }).catch(err => {
+        console.log("OOPS!", err);
+    })
+ }
+
+ function populateDirectionSelection2() {
+    console.log("populateDirectionSelection function working");
+    fetch("/stationsquery").then(response => {
+        return response.json();
+        }).then(data => {
+        console.log("data: ", data);
+
+        data.forEach(station => {
+
+            var destinationDropDown = document.getElementById("destinationDropDown");
+
+            var opt = document.createElement("option");
+            opt.value= [station.pos_lat, station.pos_lng];
+            opt.innerHTML = station.name;
+
+            destinationDropDown.add(opt);
+        });
+
+    }).catch(err => {
+        console.log("OOPS!", err);
+    })
+ }
+
+function displayDirectionsDiv() {
+  var x = document.getElementById("directionsSelection");
+  if (x.style.display === "none") {
+    x.style.display = "block";
+  } else {
+    x.style.display = "none";
+  }
+}
+
+
 function initCharts() {
     google.charts.load('current', {'packages': ['corechart']});
     google.charts.setOnLoadCallback(initMap);
 }
+
+
 
 function iconPicker(percentage) {
 
@@ -74,6 +160,16 @@ fetch("/stationsquery").then(response => {
 
 
   });
+
+    const directionsService = new google.maps.DirectionsService();
+    const directionsRenderer = new google.maps.DirectionsRenderer();
+    directionsRenderer.setMap(map);
+
+    const onChangeHandler = function () {
+    calculateAndDisplayRoute(directionsService, directionsRenderer);
+    };
+    document.getElementById("originDropDown").addEventListener("change", onChangeHandler);
+    document.getElementById("destinationDropDown").addEventListener("change", onChangeHandler);
 
   infoWindow = new google.maps.InfoWindow();
   const locationButton = document.createElement("button");
