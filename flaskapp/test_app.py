@@ -106,35 +106,110 @@ class FlaskTest(unittest.TestCase):
         self.assertTrue(b'<html>' in response.data)
         self.assertTrue(b'</html>' in response.data)
 
-    
-    ## Database Checkes
 
-    def test_database_connection_availability(self):
+
+
+
+    
+    ## Database Checkes for Index
+
+    def test_index_database_connection_availability(self):
         tester = app.test_client(self)
         response = tester.get("/bike_stand_query")
 
         statuscode = response.status_code
         self.assertEqual(statuscode, 200)
 
-    def test_database_connection_weather(self):
+    def test_index_database_connection_weather(self):
         tester = app.test_client(self)
         response = tester.get("/home_weather_query")
 
         statuscode = response.status_code
         self.assertEqual(statuscode, 200)
 
-    def test_database_return_type_availability(self):
+    def test_index_database_return_type_availability(self):
         tester = app.test_client(self)
         response = tester.get("/bike_stand_query")
 
         self.assertTrue(type(response), 'string')
 
-    def test_database_return_type_weather(self):
+    def test_index_database_return_type_weather(self):
         tester = app.test_client(self)
         response = tester.get("/home_weather_query")
 
         self.assertTrue(type(response), 'string')
+
+    def test_index_database_data_availability(self):
+        tester = app.test_client(self)
+        response = tester.get("/bike_stand_query")
+        data = response.data
+        
+        self.assertTrue(b'name' in data)
+        self.assertTrue(b'available_bikes' in data)
+        self.assertTrue(b'available_bike_stands' in data)
+        self.assertTrue(b'status' in data)
+        self.assertEqual(data.count(b'name'), 109)
+
+    def test_index_database_data_weather(self):
+        tester = app.test_client(self)
+        response = tester.get("/home_weather_query")
+        data = response.data
+        
+        self.assertTrue(b'WeatherIcon' in data)
+        self.assertTrue(b'IconPhrase' in data)
+        self.assertTrue(b'Rain' in data)
+        self.assertTrue(b'Temperature' in data)
+        self.assertTrue(b'RealFeelTemperature' in data)
+        self.assertTrue(b'CloudCover' in data)
+        self.assertTrue(b'PrecipitationProbability' in data)
+        self.assertTrue(b'RelativeHumidity' in data)
+        self.assertTrue(b'WindSpeed' in data)
+        self.assertEqual(data.count(b'WeatherIcon'), 1)
+
+
+
+
+
+
+        ## Database Checkes for Maps
+
+    def test_maps_database_connection_stations(self):
+        tester = app.test_client(self)
+        response = tester.get("/mapquery")
+
+        statuscode = response.status_code
+        self.assertEqual(statuscode, 200)
+
+    def test_maps_database_return_type_stations(self):
+        tester = app.test_client(self)
+        response = tester.get("/mapquery")
+
+        self.assertTrue(type(response), 'string')
+
+    def test_maps_database_data_stations(self):
+        tester = app.test_client(self)
+        response = tester.get("/mapquery")
+        data = response.data
+        
+        self.assertTrue(b'number' in data)
+        self.assertTrue(b'contract_name' in data)
+        self.assertTrue(b'name' in data)
+        self.assertTrue(b'address' in data)
+        self.assertTrue(b'pos_lat' in data)
+        self.assertTrue(b'pos_lng' in data)
+        self.assertTrue(b'banking' in data)
+        self.assertTrue(b'bonus' in data)
+        self.assertTrue(b'bike_stands' in data)
+        self.assertTrue(b'available_bike_stands' in data)
+        self.assertTrue(b'available_bikes' in data)
+        self.assertTrue(b'status' in data)
+        self.assertTrue(b'last_update' in data)
+        self.assertTrue(b'post_time' in data)
+        self.assertEqual(data.count(b'number'), 109)
+
     
+
+
 
 
         

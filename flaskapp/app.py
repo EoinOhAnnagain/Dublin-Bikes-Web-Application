@@ -26,7 +26,7 @@ def bike_stand_query():
 
 @app.route("/home_weather_query")
 def home_weather_query():
-    dfw = pd.read_sql_query("SELECT * FROM weather ORDER BY post_time DESC LIMIT 1", engine)
+    dfw = pd.read_sql_query("SELECT WeatherIcon, IconPhrase, Rain, Temperature, RealFeelTemperature, CloudCover, PrecipitationProbability, RelativeHumidity, WindSpeed FROM weather ORDER BY post_time DESC LIMIT 1", engine)
     return dfw.to_json(orient='records')
 
 
