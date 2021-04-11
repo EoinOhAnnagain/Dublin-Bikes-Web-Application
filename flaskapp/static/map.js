@@ -334,10 +334,33 @@ function selectDate() {
     var dd = date.getDate();
     var mm = date.getMonth() + 1;
     var y = date.getFullYear();
+    var weekDay = date.getDay();
+
+    if (weekDay == 0) {
+        formattedWeekday = 'Sun';
+    }
+    else if (weekDay == 1) {
+        formattedWeekday = 'Mon';
+    }
+    else if (weekDay == 2) {
+        formattedWeekday = 'Tue';
+    }
+    else if (weekDay == 3) {
+        formattedWeekday = 'Wed';
+    }
+    else if (weekDay == 4) {
+        formattedWeekday = 'Thu';
+    }
+    else if (weekDay == 5) {
+        formattedWeekday = 'Fri';
+    }
+    else if (weekDay == 6) {
+        formattedWeekday = 'Sat';
+    }
 
     var formattedDate = dd + '/' + mm + '/' + y;
 
-    result += "<option value=" + dd + ">" + formattedDate + "</option><br>";
+    result += "<option value=" + dd + ">" + formattedWeekday + ' ' + formattedDate + "</option><br>";
 }
     result += "</select>";
     document.getElementById("dateSelector").innerHTML = result;
