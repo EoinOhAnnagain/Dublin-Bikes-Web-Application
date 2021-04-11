@@ -5,9 +5,13 @@ window.onload = function() {
     selectStation();
     selectDate();
     selectTime();
+    populateDirectionSelection()
+    populateDirectionSelection2()
 };
 
 function calculateAndDisplayRoute(directionsService, directionsRenderer) {
+// code sourced from: https://developers.google.com/maps/documentation/javascript/examples/directions-simple#maps_directions_simple-javascript
+
 var originCoord = document.getElementById("originDropDown").value;
 var destinationCoord = document.getElementById("destinationDropDown").value;
 
@@ -34,7 +38,9 @@ console.log(destinationCoord[0],destinationCoord[0],destinationCoord[1]);
 }
 
 function populateDirectionSelection() {
-    console.log("populateDirectionSelection function working");
+// used to populate selection drop downs for routing
+
+    //retrieving data
     fetch("/stationsquery").then(response => {
         return response.json();
         }).then(data => {
@@ -42,11 +48,15 @@ function populateDirectionSelection() {
 
 
 
-        data.forEach(station => {
 
+
+        data.forEach(station => {
+            //adding option for ever station available
             var originDropDown = document.getElementById("originDropDown");
 
             var opt = document.createElement("option");
+
+            //using an array here as creating latlng here generates an error
             opt.value = [station.pos_lat, station.pos_lng];
             opt.innerHTML = station.name;
 
@@ -59,17 +69,23 @@ function populateDirectionSelection() {
  }
 
  function populateDirectionSelection2() {
-    console.log("populateDirectionSelection function working");
+// used to populate selection drop downs for routing
+
+    //retrieving data
+
     fetch("/stationsquery").then(response => {
         return response.json();
         }).then(data => {
         console.log("data: ", data);
 
         data.forEach(station => {
+        //adding option for ever station available
 
             var destinationDropDown = document.getElementById("destinationDropDown");
 
             var opt = document.createElement("option");
+
+            //using an array here as creating latlng here generates an error
             opt.value= [station.pos_lat, station.pos_lng];
             opt.innerHTML = station.name;
 
@@ -82,6 +98,7 @@ function populateDirectionSelection() {
  }
 
 function displayDirectionsDiv() {
+//used to display routing div as otherwise page gets overloaded
   var x = document.getElementById("directionsSelection");
   if (x.style.display === "none") {
     x.style.display = "block";
@@ -99,7 +116,7 @@ function initCharts() {
 
 
 function iconPicker(percentage) {
-
+//choses which icon to use based on availability percentage
     if (percentage === 0) {
         return "http://maps.google.com/mapfiles/ms/micons/red-dot.png";
     } else if (percentage < 0.25) {
@@ -126,7 +143,7 @@ fetch("/stationsquery").then(response => {
     clickableIcons: false,
   });
 
-  //creating a single infowindow to be used for information display
+  //creating a single infowindow to be used for information display, allows to only ever have one open at a time
   const infowindow = new google.maps.InfoWindow({
     content: ''
 
@@ -152,7 +169,7 @@ fetch("/stationsquery").then(response => {
         "<h3>Station status: "+ station.status +"<h3></div>"+
         '</b>');
 
-    //opening the infowindow o
+    //opening the infowindow
     infowindow.open(map,marker);
     console.log('calling drawOccupancyWeekly' + station.number);
     drawOccupancyWeekly(station.number);
@@ -161,6 +178,7 @@ fetch("/stationsquery").then(response => {
 
   });
 
+    //boiler plate directions code
     const directionsService = new google.maps.DirectionsService();
     const directionsRenderer = new google.maps.DirectionsRenderer();
     directionsRenderer.setMap(map);
@@ -168,10 +186,14 @@ fetch("/stationsquery").then(response => {
     const onChangeHandler = function () {
     calculateAndDisplayRoute(directionsService, directionsRenderer);
     };
+
+    //picking up any changes to the station selected
     document.getElementById("originDropDown").addEventListener("change", onChangeHandler);
     document.getElementById("destinationDropDown").addEventListener("change", onChangeHandler);
 
+
   infoWindow = new google.maps.InfoWindow();
+
   const locationButton = document.createElement("button");
   locationButton.textContent = "Pan to Current Location";
   locationButton.classList.add("custom-map-control-button");
@@ -215,6 +237,7 @@ fetch("/stationsquery").then(response => {
  }
 
  function handleLocationError(browserHasGeolocation, infoWindow, pos) {
+ // standard geolocation code sourced from here: https://developers.google.com/maps/documentation/javascript/geolocation
   infoWindow.setPosition(pos);
   infoWindow.setContent(
     browserHasGeolocation
