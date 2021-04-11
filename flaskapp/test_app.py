@@ -207,9 +207,113 @@ class FlaskTest(unittest.TestCase):
         self.assertTrue(b'post_time' in data)
         self.assertEqual(data.count(b'number'), 109)
 
+
+
+
+
+
+        ## Database Checkes for Stations
+
+    def test_stations_database_connection_stations(self):
+        tester = app.test_client(self)
+        response = tester.get("/stationsquery")
+
+        statuscode = response.status_code
+        self.assertEqual(statuscode, 200)
+
+    def test_stations_database_return_type_stations(self):
+        tester = app.test_client(self)
+        response = tester.get("/stationsquery")
+
+        self.assertTrue(type(response), 'string')
+
+    def test_stations_database_data_stations(self):
+        tester = app.test_client(self)
+        response = tester.get("/stationsquery")
+        data = response.data
+        
+        self.assertTrue(b'number' in data)
+        self.assertTrue(b'contract_name' in data)
+        self.assertTrue(b'name' in data)
+        self.assertTrue(b'address' in data)
+        self.assertTrue(b'pos_lat' in data)
+        self.assertTrue(b'pos_lng' in data)
+        self.assertTrue(b'banking' in data)
+        self.assertTrue(b'bonus' in data)
+        self.assertTrue(b'bike_stands' in data)
+        self.assertTrue(b'available_bike_stands' in data)
+        self.assertTrue(b'available_bikes' in data)
+        self.assertTrue(b'status' in data)
+        self.assertTrue(b'last_update' in data)
+        self.assertTrue(b'post_time' in data)
+        self.assertEqual(data.count(b'number'), 109)
+
+    def test_stations_database_connection_weather(self):
+        tester = app.test_client(self)
+        response = tester.get("/weatherquery")
+
+        statuscode = response.status_code
+        self.assertEqual(statuscode, 200)
+
+    def test_stations_database_return_type_weather(self):
+        tester = app.test_client(self)
+        response = tester.get("/weatherquery")
+
+        self.assertTrue(type(response), 'string')
+
+    def test_stations_database_data_weather(self):
+        tester = app.test_client(self)
+        response = tester.get("/weatherquery")
+        data = response.data
+        
+        ## Confirm correct...?
+        self.assertTrue(b'DateTime' in data)
+        self.assertTrue(b'EpochDateTime' in data)
+        self.assertTrue(b'HasPrecipitation' in data)
+        self.assertTrue(b'Temperature' in data)
+        self.assertTrue(b'PrecipitationProbability' in data)
+        self.assertTrue(b'RealFeelTemperature' in data)
+        self.assertTrue(b'WindSpeed' in data)
+        self.assertTrue(b'Rain' in data)
+        self.assertTrue(b'CloudCover' in data)
+        self.assertEqual(data.count(b'Rain'), 37)
+
+    def test_stations_database_connection_occupancy(self):
+        tester = app.test_client(self)
+        response = tester.get("/occupancy/42")
+
+        statuscode = response.status_code
+        self.assertEqual(statuscode, 200)
+
+    def test_stations_database_return_type_occupancy(self):
+        tester = app.test_client(self)
+        response = tester.get("/occupancy/42")
+
+        self.assertTrue(type(response), 'string')
+
+     def test_stations_database_data_occupancy(self):
+        tester = app.test_client(self)
+        response = tester.get("/occupancy/42")
+        data = response.data
+
+        self.assertTrue(b'number' in data)
+        self.assertTrue(b'last_update' in data)
+        self.assertTrue(b'available_bike_stands' in data)
+        self.assertTrue(b'available_bikes' in data)
+        self.assertTrue(b'name' in data)
+        self.assertTrue(b'post_time' in data)
+
+
+
+    
+        
     
 
 
+
+    
+
+ 
 
 
         
