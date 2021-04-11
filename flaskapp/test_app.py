@@ -1,6 +1,9 @@
 try:
     from app import app
     import unittest
+    from sqlalchemy import create_engine
+    import pandas as pd
+    from APID import *
 except Exception as e:
     print("Some modules are missing {} ".format(e))
 
@@ -103,6 +106,34 @@ class FlaskTest(unittest.TestCase):
         self.assertTrue(b'<html>' in response.data)
         self.assertTrue(b'</html>' in response.data)
 
+    
+    ## Database Checkes
+
+    def test_database_connection_availability(self):
+        tester = app.test_client(self)
+        response = tester.get("/bike_stand_query")
+
+        statuscode = response.status_code
+        self.assertEqual(statuscode, 200)
+
+    def test_database_connection_weather(self):
+        tester = app.test_client(self)
+        response = tester.get("/home_weather_query")
+
+        statuscode = response.status_code
+        self.assertEqual(statuscode, 200)
+
+    def test_database_return_type_availability(self):
+        tester = app.test_client(self)
+        response = tester.get("/bike_stand_query")
+
+        self.assertTrue(type(response), 'string')
+
+    def test_database_return_type_weather(self):
+        tester = app.test_client(self)
+        response = tester.get("/home_weather_query")
+
+        self.assertTrue(type(response), 'string')
     
 
 
