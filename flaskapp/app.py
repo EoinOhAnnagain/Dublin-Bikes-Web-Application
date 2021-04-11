@@ -50,6 +50,21 @@ def mapquery():
     #print([res for res in results])
     return df.to_json(orient="records")
 
+@app.route("/occupancy/<int:station_id>")
+@lru_cache # temporarily cache result
+def get_occupancy(station_id):
+    sql = f"""
+        SELECT number, last_update, available_bike_stands, available_bikes, name FROM availability 
+        where number = {station_id}
+    """
+    df = pd.read_sql_query(sql, engine)
+    df = df[(df['last_update'].dt.year != 1970)]
+    res_df = df.set_index('last_update').resample('1d').mean()
+    res_df['name'] = df['name'][0]
+    res_df['last_update'] = res_df.index
+    res_df = res_df.tail(32)
+    return res_df.to_json(orient='records')
+
 
 
 
@@ -68,29 +83,9 @@ def stationsquery():
     #print([res for res in results])
     return df.to_json(orient='records')
 
-@app.route("/weatherquery")
-def weatherquery():
-    df = pd.read_sql_query("SELECT * FROM weatherForecast ORDER BY EpochDateTime", engine)
-    return df.to_json(orient='records')
-
-@app.route("/occupancy/<int:station_id>")
-@lru_cache # temporarily cache result
-def get_occupancy(station_id):
-    sql = f"""
-        SELECT number, last_update, available_bike_stands, available_bikes, name, post_time FROM availability 
-        where number = {station_id}
-    """
-    df = pd.read_sql_query(sql, engine)
-    df = df[(df['last_update'].dt.year != 1970)]
-    res_df = df.set_index('last_update').resample('1d').mean()
-    res_df['name'] = df['name'][0]
-    res_df['last_update'] = res_df.index
-    res_df = res_df.tail(32)
-    return res_df.to_json(orient='records')
 
 
-
-
+    
 
 
 
