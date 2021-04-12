@@ -127,7 +127,6 @@ a {
 
 a li {
     background-color: white;
-    color: black;
     transition: .5s ease;
 }
 
@@ -137,8 +136,7 @@ a:hover {
 }
 
 a li:hover {
-    color: white;
-    background-color: black;
+    background-color: #87baff;
     transition: .5s ease;
 }
 
@@ -323,7 +321,7 @@ td img {
 }
 
 .float_box2 {
-    background-color: #87baff;
+    background-color: #4f5153;
     vertical-align: top;
     width: 40%;
     min-width: 40%;
@@ -345,4 +343,47 @@ td img {
 
 .closed {
     background-color: salmon;
+}
+
+#router {
+    background-color: white;
+    padding:1%;
+    padding-top: 0.5%;
+    padding-bottom: 0.5%;
+    margin-bottom: 1%;
+    border-radius: 25px;
+    border-bottom-right-radius: 0px;
+    transition: .5s ease;
+    border: none;
+}
+
+#router:hover {
+    background-color: #87baff;
+    transition: .5s ease;
+}
+
+#directionsSelection {
+    text-align: center;
+    transition: .5s ease-out;
+    width: fit-content;
+    padding: 0;
+    height: 0;
+    margin: auto;
+    opacity: 0;
+    margin-bottom: 0;
+    transition: .5s ease;
+}
+
+.origin-select {
+    margin: auto;
+}
+.destination-select {
+    margin: auto;
+}
+
+select {
+    background-color: #87baff;
+    border: none;
+    border-radius: 25px;
+    border-bottom-right-radius: 0px;
 }

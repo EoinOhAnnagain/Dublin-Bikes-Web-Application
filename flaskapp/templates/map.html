@@ -17,20 +17,21 @@ Stations Map
 
 {% block map %}
 
-<button onclick="displayDirectionsDiv();getLocation();">Get routes</button>
+<button id='router' onclick="displayDirectionsDiv();getLocation();">Plan Your Route</button>
 
-<div id="directionsSelection" style="display: none">
+<div id="directionsSelection">
 
-    <div class="origin-select"  style="width:200px;">
+    <div class="origin-select">
     <select id="originDropDown">
-
+        <option selected disabled>Select Your Origin</option>
     </select>
     </div>
 
+    <br>
 
-    <div class="destination-select"  style="width:200px;">
+    <div class="destination-select">
     <select id="destinationDropDown">
-
+        <option selected disabled>Select Your Destination</option>
     </select>
     </div>
 

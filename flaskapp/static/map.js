@@ -100,10 +100,17 @@ function populateDirectionSelection() {
 function displayDirectionsDiv() {
 //used to display routing div as otherwise page gets overloaded
   var x = document.getElementById("directionsSelection");
-  if (x.style.display === "none") {
-    x.style.display = "block";
+  if (x.style.opacity === "0") {
+    x.style.opacity = "1";
+    x.style.height = "fit-content";
+    x.style.padding = "1%";
+    x.style.marginBottom = "1%";
   } else {
-    x.style.display = "none";
+    x.style.opacity = "0";
+    x.styleheight = "0";
+    x.style.padding = "0";
+    x.style.marginBottom = "0";
+    x.style.margintop = "0";
   }
 }
 
