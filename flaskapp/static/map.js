@@ -109,8 +109,8 @@ function displayDirectionsDiv() {
     x.style.opacity = "0";
     x.styleheight = "0";
     x.style.padding = "0";
-    x.style.marginBottom = "0";
-    x.style.margintop = "0";
+    x.style.marginBottom = "-3%";
+    x.style.margintop = "-2.5%";
   }
 }
 
