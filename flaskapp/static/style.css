@@ -130,11 +130,6 @@ a li {
     transition: .5s ease;
 }
 
-a:hover {
-    color: darkblue;
-    transition: .5s ease; /* https://www.w3schools.com/css/css3_transitions.asp */
-}
-
 a li:hover {
     background-color: #87baff;
     transition: .5s ease;
