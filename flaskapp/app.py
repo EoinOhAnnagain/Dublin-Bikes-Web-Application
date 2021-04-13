@@ -105,7 +105,7 @@ def prediction():
         bike_stands = df["bike_stands"][0]
 
         #returning the result and populating page with result
-        return render_template("map.html", data = f"Bikes available: {int(result * bike_stands)} \n Stands available = {bike_stands- (int(result * bike_stands))}")
+        return render_template("map.html", data = f"Bikes available: {int(result * bike_stands)} \n Stands available : {bike_stands- (int(result * bike_stands))}")
 
 
 

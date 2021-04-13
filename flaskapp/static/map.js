@@ -310,8 +310,9 @@ function selectStation() {
     }).then(data => {
       console.log("data: ", data);
 
-      result = "<label for='stations'>Select a station: </label>" +
-      "<select name='stationlist' id='selectedStation'>" +
+      result = "<form method=post action=\"{{url_for('prediction')}}\">" +
+          "<label for='stations'>Select a station: </label>" +
+      "<select name='a' id='selectedStation'>" +
       "<option value='' disabled selected>Select station</option><br>";
 
       data.forEach(station => {
@@ -319,7 +320,7 @@ function selectStation() {
         result += "<option value=" + station.number + ">" + station.name + "</option><br>";
      });
 
-    result += "</select>";
+    result += "</select><br>";
     document.getElementById("stationSelector").innerHTML = result;
 
     }).catch(err => {
@@ -331,7 +332,7 @@ function selectStation() {
 // function to generate dates within dropdown menu
 function selectDate() {
     result = "<label for='dates'>Select a date: </label>" +
-        "<select name='datelist' id='selectedDate' onchange='selectTime()'>" +
+        "<select name='b' id='selectedDate' onchange='selectTime()'>" +
         "<option value='' disabled selected>select date</option><br>";
 
     for (var i = 0; i < 7; i++) {
@@ -367,18 +368,22 @@ function selectDate() {
 
     var formattedDate = dd + '/' + mm + '/' + y;
 
-    result += "<option value=" + dd + ">" + formattedWeekday + ' ' + formattedDate + "</option><br>";
+    result += "<option value=" + y + "-" + mm + "-" + dd + ">" + formattedWeekday + ' ' + formattedDate + "</option><br>";
 }
-    result += "</select>";
+    result += "</select><br>";
     document.getElementById("dateSelector").innerHTML = result;
 }
+
+
+
+
 
 
 // function to generate times within dropdown menu
 function selectTime() {
 
       result = "<label for='times'>Select a time: </label>" +
-      "<select name='timelist' id='selectedTime'>" +
+      "<select name='c' id='selectedTime'>" +
           "<option value='' disabled selected>select time</option><br>";
 
       var date = new Date();
@@ -390,17 +395,15 @@ function selectTime() {
 
       var chosenDate = document.getElementById('selectedDate').value;
 
-      if (chosenDate == dd) {
-          for (var i=h*60; i<1400; i+= 60) {
-          var hours = Math.floor(i/60);
-          var valueHours = Math.floor(i/60);
-          if (hours < 10) {
-            hours = '0' + hours;
-        }
+      if (chosenDate == y + "-" + mm + "-" + dd) {
+          for (var i=h*60; i<1400; i+=60) {
+            var hours = Math.floor(i/60);
+            var valueHours = Math.floor(i/60);
+                if (hours < 10) {
+                    hours = '0' + hours;
+                }
         result += "<option value=" + valueHours  + ">" + hours + ":" + "00" + "</option><br>";
       }
-    result += "</select>";
-    document.getElementById("timeSelector").innerHTML = result;
       }
       else {
           for (var i=0; i<1400; i+= 60) {
@@ -411,18 +414,12 @@ function selectTime() {
         }
         result += "<option value=" + valueHours  + ">" + hours + ":" + "00" + "</option><br>";
       }
-    result += "</select>";
-    document.getElementById("timeSelector").innerHTML = result;
+
       }
-}
-
-
-// function to call predict on pickled model
-function clickSubmit() {
-    var chosenStation = document.getElementById('selectedStation').value;
-    var chosenDate = document.getElementById('selectedDate').value;
-    var chosenTime = document.getElementById('selectedTime').value;
-
-    // send variables to pickle file and return number to prediction div?
+      result += "</select>" +
+          "<input type=submit value='submit'>" + "</form>" + "Prediction: + {data}";
+          document.getElementById("timeSelector").innerHTML = result;
 
 }
+
+
