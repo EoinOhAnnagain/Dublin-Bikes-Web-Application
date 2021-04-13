@@ -1,9 +1,13 @@
-from flask import Flask, render_template
+from flask import Flask, render_template, request
 from jinja2 import Template
 from sqlalchemy import create_engine
 import pandas as pd
 from APID import *
 from functools import lru_cache
+
+from datetime import datetime
+import pickle
+import sklearn
 
 app = Flask(__name__)
 
@@ -64,6 +68,45 @@ def get_occupancy(station_id):
     res_df['last_update'] = res_df.index
     res_df = res_df.tail(32)
     return res_df.to_json(orient='records')
+
+
+@app.route("/prediction", methods=['POST'])
+def prediction():
+
+    #gettting the selected predicted values
+    if request.method == "POST":
+        #assigning to variables
+        number = request.form['a']
+        date = request.form['b']
+        hour = request.form['c']
+
+        #retreving predicted weather forecast for input date
+        sql = f""" SELECT RealFeelTemperature, WindSpeed, HasPrecipitation, Rain, CloudCover FROM weatherForecast WHERE STR_TO_DATE(DateTime, '%Y-%d-%m') = "{date}";"""
+
+        df = pd.read_sql_query(sql, engine)
+
+        #adding selected values to datafame
+        df['number'] = number
+        df['day'] = request.form['b'].split("-")[2]
+        df['hour'] = request.form['c']
+
+
+        #reordering columns as per model
+        df = df[['number', 'hour', 'day', 'RealFeelTemperature', 'WindSpeed', 'HasPrecipitation',
+                 'Rain', 'CloudCover']]
+
+        #loading in model and predicting aviability percentage
+        mp = pickle.load(open('finalized_model.sav', 'rb'))
+        result = mp.predict(df)
+
+        #getting number of bike stands available for station number
+        sql = f"""SELECT bike_stands FROM stations WHERE number = "{number}" ;"""
+        df = pd.read_sql_query(sql, engine)
+        bike_stands = df["bike_stands"][0]
+
+        #returning the result and populating page
+        return render_template("map.html", data = f"Bikes available: {int(result * bike_stands)} \n Stands available = {bike_stands- (int(result * bike_stands))}")
+
 
 
 
