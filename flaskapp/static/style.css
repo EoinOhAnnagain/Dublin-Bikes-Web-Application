@@ -35,6 +35,13 @@ div {
     border-bottom-right-radius: 0;
 }
 
+.icon_gif {
+    height: auto;
+    width: 50%;
+    border-radius: 25px;
+    border-bottom-right-radius: 0;
+}
+
 .title {
     max-width: 93%;
     height: auto;

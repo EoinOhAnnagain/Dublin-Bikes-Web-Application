@@ -141,7 +141,7 @@ function initWeather() {
     
     data.forEach(weather => {
       var icon = weather.WeatherIcon;
-      var iconPic = "<img class='loading' src='static/weatherIcons/"+icon+".gif'>";
+      var iconPic = "<img class='icon_gif' src='static/weatherIcons/"+icon+".gif'>";
       var iconList = [1, 2, 3, 4, 6, 7, 11, 12, 13,14, 18, 34, 35, 36, 38, 40];
 
   
@@ -156,7 +156,7 @@ function initWeather() {
       if (iconList.includes(icon)==true) {
         result += iconPic;
       } else {
-        result += "<img class='loading' src='static/weatherIcons/unknown.gif'>";
+        result += "<img class='icon_gif' src='static/weatherIcons/unknown.gif'>";
       }
       result += "<h3 class='icon_phrase'>"+weather.IconPhrase+"</h3>";
 
