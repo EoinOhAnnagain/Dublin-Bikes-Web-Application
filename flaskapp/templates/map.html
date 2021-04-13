@@ -54,46 +54,10 @@ Stations Map
     <div id="stationSelector"></div>
     <div id="dateSelector"></div>
     <div id="timeSelector"></div>
+    <div id="predictor"></div>
+    Prediction: {{data}}
 </div>
 
-<form method=post action="{{url_for('prediction')}}">
-
-   <label for='stations'>Select a station: </label>
-      <select name='a' id='selectedStation'>
-      <option value='' disabled selected>Select station</option><br>
-          <option value=5>Five</option><br>
-           <option value=11>Eleven</option><br>
-    </select><br>
-
-    <label for='date'>Select a date: </label>
-      <select name='b' id='selectedDate'>
-      <option value='' disabled selected>Select date</option><br>
-          <option value=2021-04-15>15th April</option><br>
-          <option value=2021-04-16>16th April</option><br>
-      </select><br>
-
-    <label for='hour'>Select a time: </label>
-      <select name='c' id='selectedTime'>
-      <option value='' disabled selected>Select hour</option><br>
-          <option value=15>Fifteen</option><br>
-          <option value=16>Sixteen</option><br>
-
-    </select>
-    <input type=submit value="submit">
-
-<!--
-
-   Station number: <input type="number" name="a">2</input><br>
-
-    Date: <input type="date"   name="b"><br>
-
-    Hour: <input type="number" name="c"><br>
-
-    <input type=submit value="submit">
--->
-
-</form>
-Prediction: {{data}}
 
 {% endblock %}
 
