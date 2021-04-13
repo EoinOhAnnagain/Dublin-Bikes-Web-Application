@@ -34,26 +34,19 @@ Stations Map
         <option selected disabled>Select Your Destination</option>
     </select>
     </div>
-
+U
 
     <div id="currentLocation"></div>
 
+</div>
 
 </div>
 
-
-
-
-
-</div>
 
 <div id="map"><img class="loading" src="{{ url_for('static', filename='loading.gif')}}"/></div>
 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD5kFN1DUAWc6PZD3lFugxml81w6nAOw8M&callback=initCharts&libraries=&v=weekly" async></script>
 <div id="predictions">
     <h3>Bike Availability Predictor</h3>
-    <div id="stationSelector"></div>
-    <div id="dateSelector"></div>
-    <div id="timeSelector"></div>
     <div id="predictor"></div>
     Prediction: {{data}}
 </div>
