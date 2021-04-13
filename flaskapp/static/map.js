@@ -30,9 +30,7 @@ console.log(destinationCoord[0],destinationCoord[0],destinationCoord[1]);
     (response, status) => {
       if (status === "OK") {
         directionsRenderer.setDirections(response);
-      } else {
-        window.alert("Directions request failed due to " + status);
-      }
+      } 
     }
   );
 }
@@ -265,6 +263,7 @@ function drawOccupancyWeekly(station_number) {
 
         var options = {
             title: data[0].name + " Bike Availability per day",
+            legend: 'none'
 
         }
 
@@ -287,6 +286,7 @@ function drawOccupancyWeekly(station_number) {
 
         var options = {
             title: data[0].name + " Bike Stand Availability per day",
+            legend: 'none'
 
         }
 
