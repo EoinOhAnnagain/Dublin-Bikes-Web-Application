@@ -339,7 +339,8 @@ td img {
 
 .icon_phrase {
     background-color: #87baff;
-    width: 50%;
+    width: fit-content;
+    min-width: 50%;
     margin: auto;
     margin-top: 0;
     border-radius: 25px;
@@ -390,4 +391,10 @@ select {
     border: none;
     border-radius: 25px;
     border-bottom-right-radius: 0px;
+}
+
+iframe {
+    background-color: #87baff;
+    border-radius: 25px;
+    border-bottom-right-radius: 0;
 }
