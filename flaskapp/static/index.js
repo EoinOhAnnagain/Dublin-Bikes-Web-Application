@@ -158,7 +158,7 @@ function initWeather() {
       } else {
         result += "<img class='icon_gif' src='static/weatherIcons/unknown.gif'>";
       }
-      result += "<h3 class='icon_phrase'>"+weather.IconPhrase+"</h3>";
+      result += "<br><br><h3 class='icon_phrase'>"+weather.IconPhrase+"</h3>";
 
       result += "<div class='line'></div><div class='TES'>";
 

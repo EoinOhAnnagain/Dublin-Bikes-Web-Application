@@ -277,8 +277,8 @@ td img {
     margin-right: 1%;
     padding-left: 0.5%;
     background-color: #87baff;
-    max-width: 40%;
-    min-width: 40%;
+    max-width: 47%;
+    min-width: 47%;
     display: inline-block;
     vertical-align: top;
 }
@@ -312,27 +312,29 @@ td img {
 .float_box {
     vertical-align: top;
     width: 48%;
+    max-width: 100%;
     min-width: 40%;
     margin: auto;
     display: inline-block;
     padding-left: 10px;
     padding-right: 10px;
-}
-
-.line {
-    border: 1px solid black;
 }
 
 .float_box2 {
     background-color: #87baff;
     vertical-align: top;
     width: 40%;
+    max-width: 100%;
     min-width: 40%;
     margin: auto;
     display: inline-block;
     padding-left: 10px;
     padding-right: 10px;
     border: 10px solid white;
+}
+
+.line {
+    border: 1px solid black;
 }
 
 .icon_phrase {
