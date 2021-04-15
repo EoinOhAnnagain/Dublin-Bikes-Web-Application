@@ -103,10 +103,10 @@ function displayDirectionsDiv() {
     x.style.marginBottom = "1%";
   } else {
     x.style.opacity = "0";
-    x.styleheight = "0";
+    x.style.height = "0";
     x.style.padding = "0";
-    x.style.marginBottom = "-3%";
-    x.style.margintop = "-2.5%";
+    x.style.marginBottom = "0";
+    x.style.margintop = "0";
   }
 }
 
@@ -409,3 +409,19 @@ function Predictor() {
     })
 }
 
+function displayPredictionsDiv() {
+//used to display routing div as otherwise page gets overloaded
+  var x = document.getElementById("predictionSelection");
+  if (x.style.opacity === "0") {
+    x.style.opacity = "1";
+    x.style.height = "fit-content";
+    x.style.padding = "1%";
+    x.style.marginBottom = "1%";
+  } else {
+    x.style.opacity = "0";
+    x.style.height = "0";
+    x.style.padding = "0";
+    x.style.marginBottom = "0";
+    x.style.margintop = "0";
+  }
+}

@@ -313,7 +313,7 @@ td img {
     vertical-align: top;
     width: 48%;
     max-width: 100%;
-    min-width: 40%;
+    min-width: 48%;
     margin: auto;
     display: inline-block;
     padding-left: 10px;
@@ -363,7 +363,25 @@ td img {
     border: none;
 }
 
+#predictions {
+    background-color: white;
+    padding:1%;
+    width: fit-content;
+    padding-top: 0.5%;
+    padding-bottom: 0.5%;
+    margin-bottom: 1%;
+    border-radius: 25px;
+    border-bottom-right-radius: 0px;
+    transition: .5s ease;
+    border: none;
+}
+
 #router:hover {
+    background-color: #87baff;
+    transition: .5s ease;
+}
+
+#predictions:hover {
     background-color: #87baff;
     transition: .5s ease;
 }
@@ -377,6 +395,7 @@ td img {
     margin: auto;
     margin-bottom: 0;
     transition: .5s ease;
+    overflow-y: hidden;
 }
 
 .origin-select {
@@ -397,4 +416,20 @@ iframe {
     background-color: #87baff;
     border-radius: 25px;
     border-bottom-right-radius: 0;
+}
+
+h3 {
+    margin: 0;
+}
+
+#predictionSelection {
+    text-align: center;
+    transition: .5s ease;
+    width: fit-content;
+    padding: 0;
+    height: 0;
+    margin: auto;
+    margin-bottom: 0;
+    transition: .5s ease;
+    overflow-y: hidden;
 }

@@ -17,7 +17,9 @@ Stations Map
 
 {% block map %}
 
-<button id='router' onclick="displayDirectionsDiv();getLocation();">Plan Your Route</button>
+<br>
+
+<button id='router' onclick="displayDirectionsDiv();getLocation();"><h3>Plan Your Route</h3></button>
 
 <div id="directionsSelection" style="opacity: 0;">
 
@@ -39,16 +41,26 @@ Stations Map
 
 </div>
 
+<button id="predictions" onclick="displayPredictionsDiv();">
+    <h3>Bike Availability Predictor</h3>
+
+    {% autoescape false %}
+    {{data}}
+    {% endautoescape %}
+
+    
+   
+</button>
+
+<div id="predictionSelection" style="opacity: 0;">
+<div id="predictor"><img class="loading" style="height: 100px; width: auto;" src="{{ url_for('static', filename='loading.gif')}}"/></div>
 </div>
 
+<br>
 
 <div id="map"><img class="loading" src="{{ url_for('static', filename='loading.gif')}}"/></div>
 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD5kFN1DUAWc6PZD3lFugxml81w6nAOw8M&callback=initCharts&libraries=&v=weekly" async></script>
-<div id="predictions">
-    <h3>Bike Availability Predictor</h3>
-    <div id="predictor"></div>
-    Prediction: {{data}}
-</div>
+
 
 
 {% endblock %}
