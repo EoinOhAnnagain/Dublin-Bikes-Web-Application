@@ -8,10 +8,11 @@ from functools import lru_cache
 from datetime import datetime
 import pickle
 import sklearn
+import os
 
 app = Flask(__name__)
 
-
+print(os.getcwd())
 
 
 
