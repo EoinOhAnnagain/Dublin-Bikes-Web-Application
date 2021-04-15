@@ -109,7 +109,7 @@ def prediction():
         df = pd.read_sql_query(sql, engine)
         bike_stands = df["bike_stands"][0]
 
-        rs = f"<br><b>Bikes Available:</b> {int(result * bike_stands)} <br><b>Stands Available:</b> {bike_stands- (int(result * bike_stands))}"
+        rs = f"<div style='text-align: left;'><br><b>Prediction for:</b><br>----------------------------------<br><b>Station Number:  </b>{number}<br><b>Date:  </b>{date}<br><b>Time:  </b>{hour}:00</b><br>----------------------------------<br><b>Bikes Available:  </b>{int(result * bike_stands)}<br><b>Stands Available:  </b> {bike_stands- (int(result * bike_stands))}</div>"
         
 
         #returning the result and populating page with result
