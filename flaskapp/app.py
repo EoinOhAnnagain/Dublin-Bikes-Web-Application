@@ -19,10 +19,14 @@ print(os.getcwd())
 
 ## Index Page
 
+## App routes to get to the index page
 @app.route("/home")
 @app.route("/")
 def hello():
     return render_template("index.html")
+
+
+## Database queries for index page
 
 @app.route("/bike_stand_query")
 def bike_stand_query():
@@ -105,7 +109,7 @@ def prediction():
         df = pd.read_sql_query(sql, engine)
         bike_stands = df["bike_stands"][0]
 
-        rs = f"<br>Bikes available: {int(result * bike_stands)} <br> Stands Available: {bike_stands- (int(result * bike_stands))}<br><br>"
+        rs = f"<br><b>Bikes Available:</b> {int(result * bike_stands)} <br><b>Stands Available:</b> {bike_stands- (int(result * bike_stands))}"
         
 
         #returning the result and populating page with result

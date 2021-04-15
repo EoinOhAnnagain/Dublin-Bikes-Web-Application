@@ -15,11 +15,13 @@ Home
 {% endblock %}
 
 {% block content %}
-    <div class='float_box'>
-        <h2><u>Current Availability</u></h2>
-<div id="stands"><img class="loading" style="width: 50%; height: auto;" src="{{ url_for('static', filename='loading.gif')}}"/></div>
-    </div><div class='float_box'>
-        <h2><u>Weather Widget</u></h2>
-<div id="weather"><img class="loading" style="width: 50%; height: auto;" src="{{ url_for('static', filename='loading.gif')}}"/></div>
+<!--These divs are used to display the availbe stations and weather widget side by side if the users screen allows, or one on top of the other otherwise-->
+<div class='float_box'>
+    <h2><u>Current Availability</u></h2>
+    <div id="stands"><img class="loading" style="width: 50%; height: auto;" src="{{ url_for('static', filename='loading.gif')}}"/></div>
+</div>
+<div class='float_box'>
+    <h2><u>Weather Widget</u></h2>
+    <div id="weather"><img class="loading" style="width: 50%; height: auto;" src="{{ url_for('static', filename='loading.gif')}}"/></div>
 </div>
 {% endblock %}

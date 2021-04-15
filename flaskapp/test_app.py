@@ -110,10 +110,14 @@ class FlaskTest(unittest.TestCase):
 
 
 
+    ## The following are tests run on the database connection and the queries. 
+    ## Similar to above there are three main tests run (status code, data type, and data contents) and only the ones for index contain docstrings and comments unless there are major differences.
     
     ## Database Checkes for Index
 
     def test_index_database_connection_availability(self):
+        '''This function tests that a successful status code is retuned from the availability table database search'''
+        
         tester = app.test_client(self)
         response = tester.get("/bike_stand_query")
 
@@ -121,6 +125,8 @@ class FlaskTest(unittest.TestCase):
         self.assertEqual(statuscode, 200)
 
     def test_index_database_connection_weather(self):
+        '''This function tests that a successful status code is retuned from the weather table database search'''
+        
         tester = app.test_client(self)
         response = tester.get("/home_weather_query")
 
@@ -128,33 +134,45 @@ class FlaskTest(unittest.TestCase):
         self.assertEqual(statuscode, 200)
 
     def test_index_database_return_type_availability(self):
+        '''This function tests that the return from the query on the availability database table is of the correct type'''
+
         tester = app.test_client(self)
         response = tester.get("/bike_stand_query")
 
         self.assertTrue(type(response), 'string')
 
     def test_index_database_return_type_weather(self):
+        '''This function tests that the return from the query on the weather database table is of the correct type'''
+
         tester = app.test_client(self)
         response = tester.get("/home_weather_query")
 
         self.assertTrue(type(response), 'string')
 
     def test_index_database_data_availability(self):
+        '''This function tests that the return from the query on the availability database table contains the expected headings'''
+
         tester = app.test_client(self)
         response = tester.get("/bike_stand_query")
         data = response.data
         
+        ## The returned data is checked for the following which should be the headings of the data's columns.
         self.assertTrue(b'name' in data)
         self.assertTrue(b'available_bikes' in data)
         self.assertTrue(b'available_bike_stands' in data)
         self.assertTrue(b'status' in data)
+
+        ## This line tests that the corrent number of tubles are returned by counting the occurance of one of the headings for the table. It will appear once for each returned row.
         self.assertEqual(data.count(b'name'), 109)
 
     def test_index_database_data_weather(self):
+        '''This function tests that the return from the query on the weather database table contains the expected headings'''
+
         tester = app.test_client(self)
         response = tester.get("/home_weather_query")
         data = response.data
         
+        ## The returned data is checked for the following which should be the headings of the data's columns.
         self.assertTrue(b'WeatherIcon' in data)
         self.assertTrue(b'IconPhrase' in data)
         self.assertTrue(b'Rain' in data)
@@ -164,6 +182,8 @@ class FlaskTest(unittest.TestCase):
         self.assertTrue(b'PrecipitationProbability' in data)
         self.assertTrue(b'RelativeHumidity' in data)
         self.assertTrue(b'WindSpeed' in data)
+
+        ## This line tests that the corrent number of tubles are returned by counting the occurance of one of the headings for the table. It will appear once for each returned row.
         self.assertEqual(data.count(b'WeatherIcon'), 1)
 
 
@@ -205,6 +225,7 @@ class FlaskTest(unittest.TestCase):
         self.assertTrue(b'status' in data)
         self.assertTrue(b'last_update' in data)
         self.assertTrue(b'post_time' in data)
+        
         self.assertEqual(data.count(b'number'), 109)
 
     def test_maps_database_connection_occupancy(self):
@@ -230,6 +251,7 @@ class FlaskTest(unittest.TestCase):
         self.assertTrue(b'available_bike_stands' in data)
         self.assertTrue(b'available_bikes' in data)
         self.assertTrue(b'name' in data)
+        
         self.assertEqual(data.count(b'name'), 32)
 
 
@@ -271,6 +293,7 @@ class FlaskTest(unittest.TestCase):
         self.assertTrue(b'status' in data)
         self.assertTrue(b'last_update' in data)
         self.assertTrue(b'post_time' in data)
+        
         self.assertEqual(data.count(b'number'), 109)
 
 

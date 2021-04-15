@@ -15,9 +15,11 @@ Stations
 {% endblock %}
 
 {% block search %}
-<input type="text" id="myInput" onkeyup="searchFunction()" placeholder="Search for station name or street">
+<!--Search for stations page-->
+<input type="text" id="myInput" onkeyup="searchFunction()" placeholder="Search for Station Name or Street">
 {% endblock %}
 
 {% block content %}
+<!--div to load in the stations list-->
 <div id="list"><img class="loading" src="{{ url_for('static', filename='loading.gif')}}"></div>
 {% endblock %}

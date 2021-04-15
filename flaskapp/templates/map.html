@@ -18,9 +18,10 @@ Stations Map
 {% block map %}
 
 <br>
-
+<!--Button to display and hide the div contaiing the dropdowns for routing-->
 <button id='router' onclick="displayDirectionsDiv();getLocation();"><h3>Plan Your Route</h3></button>
 
+<!--Div containing routing informaiton. Opacity needed to be styled in tag or the button odesnt work on the first click-->
 <div id="directionsSelection" style="opacity: 0;">
 
     <div class="origin-select">
@@ -41,17 +42,18 @@ Stations Map
 
 </div>
 
+<!--Button to display and hide the div contaiing the dropdowns for predictions-->
 <button id="predictions" onclick="displayPredictionsDiv();">
     <h3>Bike Availability Predictor</h3>
 
+    <!--Section to display prediction information-->
     {% autoescape false %}
     {{data}}
     {% endautoescape %}
 
-    
-   
 </button>
 
+<!--Div containing prediction informaiton. Opacity needed to be styled in tag or the button odesnt work on the first click-->
 <div id="predictionSelection" style="opacity: 0;">
 <div id="predictor"><img class="loading" style="height: 100px; width: auto;" src="{{ url_for('static', filename='loading.gif')}}"/></div>
 </div>
@@ -67,6 +69,7 @@ Stations Map
 
 {% block content %}
 
+<!--Divs to present charts for station information. Surounding div #chart_box is needed to prevent an overflow issue as it forces the y_overflow to hide on the left side, not right-->
 <div id="chart_box">
 <div id="chart1"></div>
 <div id="chart2"></div>

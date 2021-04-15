@@ -47,12 +47,12 @@ function populateDirectionSelection() {
 
 
         data.forEach(station => {
-            //adding option for ever station available
+            // adding option for ever station available
             var originDropDown = document.getElementById("originDropDown");
 
             var opt = document.createElement("option");
 
-            //using an array here as creating latlng here generates an error
+            // using an array here as creating latlng here generates an error
             opt.value = [station.pos_lat, station.pos_lng];
             opt.innerHTML = station.name;
 
@@ -94,7 +94,7 @@ function populateDirectionSelection() {
  }
 
 function displayDirectionsDiv() {
-//used to display routing div as otherwise page gets overloaded
+//used to display and hide routing div
   var x = document.getElementById("directionsSelection");
   if (x.style.opacity === "0") {
     x.style.opacity = "1";
@@ -407,7 +407,7 @@ function Predictor() {
 }
 
 function displayPredictionsDiv() {
-//used to display routing div as otherwise page gets overloaded
+// used to display and hide the div containing dropdowns for predictability
   var x = document.getElementById("predictionSelection");
   if (x.style.opacity === "0") {
     x.style.opacity = "1";

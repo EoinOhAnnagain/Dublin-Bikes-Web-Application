@@ -2,6 +2,7 @@ window.onload = function() {
     initList();
 };
 
+// Function to create stations table
 function initList() {
     fetch("/stationsquery").then(response => {
       return response.json();

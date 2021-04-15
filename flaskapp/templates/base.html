@@ -1,3 +1,6 @@
+<!--This page acts as a base format for all pages in the app. It provides heading information, the title, navigation buttons, and divs to contain the body of each page (and map for the map page)-->
+<!--Adding <!DOCTYPE html> causes a display issue with some browsers-->
+<!--This page contain blocks that the apps pages extend-->
 <html>
     <html lang="en">
     <head>
@@ -37,14 +40,20 @@
 
         <div></div>
         </header>
+
+        <!--Block for displaying the map on the map page. This needed to be seperate to prevent a background display issue on the map-->
         {% block map %}
         {% endblock %}
+
+
         <div class="body">
+            <!--Block for scroll bar on stations page. It was given its own block so it would not be hidden by x-axis scrolling-->
             {% block search %}
             {% endblock %}
             <div class="scroll">
-        {% block content %}
-        {% endblock %}
+                <!--Main block for each page-->
+                {% block content %}
+                {% endblock %}
             </div>
         </div>
 
