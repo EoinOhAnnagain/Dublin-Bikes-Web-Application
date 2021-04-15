@@ -311,9 +311,8 @@ function Predictor() {
       console.log("data: ", data);
 
       result = "<form method=post action='/prediction'>" +
-          "<label for='stations'>Select a station: </label>" +
-      "<select name='a' id='selectedStation'>" +
-      "<option value='' disabled selected>Select station</option><br>";
+          "<select name='a' id='selectedStation'>" +
+      "<option value='' disabled selected>Select a Station</option><br>";
 
       data.forEach(station => {
         result += "<option value=" + station.number + ">" + station.name + "</option><br>";
@@ -323,9 +322,8 @@ function Predictor() {
 
 
     // populating date dropdown menu
-    result += "<label for='dates'>Select a date: </label>" +
-        "<select name='b' id='selectedDate'>" +
-        "<option value='' disabled selected>select date</option><br>";
+    result += "<br><select name='b' id='selectedDate'>" +
+        "<option value='' disabled selected>Select a Date</option><br>";
 
     for (var i = 0; i < 7; i++) {
         var date = new Date();
@@ -367,9 +365,8 @@ function Predictor() {
 
 
     // populating time dropdown menu
-    result += "<label for='times'>Select a time: </label>" +
-              "<select name='c' id='selectedTime'>" +
-              "<option value='' disabled selected>select time</option><br>";
+    result += "<br><select name='c' id='selectedTime'>" +
+              "<option value='' disabled selected>Select a Time</option><br>";
 
       var date = new Date();
       date.setDate(date.getDate() );
@@ -401,7 +398,7 @@ function Predictor() {
       }
 
      // }
-      result += "</select><br>";
+      result += "</select><br><br>";
 
     result += "<input type=submit value='submit'>" + "</form>";
     document.getElementById("predictor").innerHTML = result;

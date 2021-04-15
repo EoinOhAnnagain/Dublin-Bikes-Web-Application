@@ -407,9 +407,16 @@ td img {
 
 select {
     background-color: #87baff;
-    border: none;
+    border: 1px solid #87baff;
     border-radius: 25px;
     border-bottom-right-radius: 0px;
+    width: 95%;
+    transition: .5s ease;
+}
+
+select:hover {
+    background-color: white;
+    transition: .5s ease;
 }
 
 iframe {
@@ -432,4 +439,19 @@ h3 {
     margin-bottom: 0;
     transition: .5s ease;
     overflow-y: hidden;
+}
+
+input {
+    background-color: #87baff;
+    border: none;
+    margin: 0;
+    border-radius: 25px;
+    border-bottom-right-radius: 0px;
+    transition: .5s ease;
+    border: 1px solid #87baff;
+}
+
+input:hover {
+    background-color: white;
+    transition: .5s ease;
 }
