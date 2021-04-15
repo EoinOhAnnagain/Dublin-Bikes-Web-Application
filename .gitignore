@@ -2,4 +2,4 @@ flaskapp/APID.py
 flaskapp/__pycache__/
 .idea
 APID.py
-
+__pycache__/
