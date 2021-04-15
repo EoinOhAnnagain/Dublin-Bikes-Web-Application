@@ -455,3 +455,8 @@ input:hover {
     background-color: white;
     transition: .5s ease;
 }
+
+#chart_box {
+    overflow: hidden;
+    direction: rtl;
+}
